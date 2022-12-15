@@ -1,8 +1,4 @@
 [ {
-  "error" : "Error",
-  "currentMoviesList" : [ ],
-  "currentUser" : null
-}, {
   "error" : null,
   "currentMoviesList" : [ ],
   "currentUser" : {
@@ -10,7 +6,7 @@
       "name" : "Ramsi",
       "password" : "numiplacevelea",
       "accountType" : "standard",
-      "country" : "Ireland",
+      "country" : "Romania",
       "balance" : "300"
     },
     "tokensCount" : 0,
@@ -25,23 +21,15 @@
   "currentMoviesList" : [ ],
   "currentUser" : null
 }, {
-  "error" : "Error",
-  "currentMoviesList" : [ ],
-  "currentUser" : null
-}, {
-  "error" : "Error",
-  "currentMoviesList" : [ ],
-  "currentUser" : null
-}, {
   "error" : null,
   "currentMoviesList" : [ ],
   "currentUser" : {
     "credentials" : {
-      "name" : "Eduard",
-      "password" : "secret",
-      "accountType" : "standard",
-      "country" : "Romania",
-      "balance" : "50"
+      "name" : "Mihail",
+      "password" : "discret",
+      "accountType" : "premium",
+      "country" : "Russia",
+      "balance" : "1337"
     },
     "tokensCount" : 0,
     "numFreePremiumMovies" : 15,
@@ -50,4 +38,26 @@
     "likedMovies" : [ ],
     "ratedMovies" : [ ]
   }
+}, {
+  "error" : null,
+  "currentMoviesList" : [ ],
+  "currentUser" : {
+    "credentials" : {
+      "name" : "Mihail",
+      "password" : "discret",
+      "accountType" : "premium",
+      "country" : "Russia",
+      "balance" : "1337"
+    },
+    "tokensCount" : 0,
+    "numFreePremiumMovies" : 15,
+    "purchasedMovies" : [ ],
+    "watchedMovies" : [ ],
+    "likedMovies" : [ ],
+    "ratedMovies" : [ ]
+  }
+}, {
+  "error" : "Error",
+  "currentMoviesList" : [ ],
+  "currentUser" : null
 } ]

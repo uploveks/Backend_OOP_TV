@@ -1,8 +1,8 @@
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import inputData.Input;
-import outputData.Output;
+import inputdata.Input;
+import outputdata.Output;
 
 import java.io.File;
 import java.io.IOException;

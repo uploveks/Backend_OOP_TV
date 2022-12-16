@@ -6,8 +6,13 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class SortByDuration implements ISort{
-    public List<Movie> sortMovies(List<Movie> movies, String listOrder) {
+public class SortByDuration implements ISort {
+    /**
+     * @param movies
+     * @param listOrder
+     * @return
+     */
+    public List<Movie> sortMovies(final List<Movie> movies, final String listOrder) {
         List<Movie> sortedMovies = new ArrayList<>(movies);
         if (listOrder.equals("ascending")) {
             sortedMovies.sort(Comparator.comparing(Movie::getDuration));

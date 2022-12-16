@@ -8,10 +8,10 @@ public class Input {
     private ArrayList<Movie> movies;
     private ArrayList<Action> actions;
 
-    private Input(){
+    private Input() {
     }
 
-    public static Input getInstance(){
+    public static Input getInstance() {
         return instance;
     }
 

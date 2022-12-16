@@ -48,6 +48,15 @@ public class User {
         this.ratedMovies = user.getRatedMovies();
     }
 
+    public void reinitializeTest() {
+        this.tokensCount = 0;
+        this.numFreePremiumMovies = 15;
+        this.purchasedMovies = new ArrayList();
+        this.watchedMovies = new ArrayList();
+        this.likedMovies = new ArrayList();
+        this.ratedMovies = new ArrayList();
+    }
+
     /**
      * @return
      */

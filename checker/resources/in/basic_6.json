@@ -6,7 +6,7 @@
         "password": "secret",
         "accountType": "standard",
         "country": "Romania",
-        "balance": "50"
+        "balance": "200"
       }
     },
     {
@@ -60,6 +60,18 @@
   "actions": [
     {
       "type": "change page",
+      "page": "login"
+    },
+    {
+      "type": "on page",
+      "feature": "login",
+      "credentials": {
+        "name": "Eduard",
+        "password": "parolamea"
+      }
+    },
+    {
+      "type": "change page",
       "page": "register"
     },
     {
@@ -69,9 +81,30 @@
         "name": "Ramsi",
         "password": "numiplacevelea",
         "accountType": "standard",
-        "country": "Romania",
+        "country": "Ireland",
         "balance": "300"
       }
+    },
+    {
+      "type": "change page",
+      "page": "login"
+    },
+    {
+      "type": "on page",
+      "feature": "login",
+      "credentials": {
+        "name": "Ramsi",
+        "password": "numiplacevelea"
+      }
+    },
+    {
+      "type": "change page",
+      "page": "movies"
+    },
+    {
+      "type": "on page",
+      "feature": "search",
+      "startsWith": "Iubire din serai"
     },
     {
       "type": "on page",
@@ -80,6 +113,11 @@
         "sort": {
           "rating": "decreasing",
           "duration": "decreasing"
+        },
+        "contains": {
+          "actors": [
+            "Keanu Reeves"
+          ]
         }
       }
     },
@@ -95,13 +133,48 @@
       "type": "on page",
       "feature": "login",
       "credentials": {
-        "name": "Mihail",
-        "password": "discret"
+        "name": "Eduard",
+        "password": "nicigand"
       }
     },
     {
       "type": "change page",
+      "page": "login"
+    },
+    {
+      "type": "on page",
+      "feature": "login",
+      "credentials": {
+        "name": "Eduard",
+        "password": "secret"
+      }
+    },
+    {
+      "type": "change page",
+      "page": "upgrades"
+    },
+    {
+      "type": "on page",
+      "feature": "buy tokens",
+      "count": "50"
+    },
+    {
+      "type": "on page",
+      "feature": "buy premium account"
+    },
+    {
+      "type": "change page",
       "page": "movies"
+    },
+    {
+      "type": "change page",
+      "page": "see details",
+      "movie": "AAA"
+    },
+    {
+      "type": "change page",
+      "page": "see details",
+      "movie": "BBBB"
     },
     {
       "type": "change page",

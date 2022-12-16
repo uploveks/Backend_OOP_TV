@@ -1,5 +1,6 @@
 package inputdata;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public final class Movie {
@@ -29,6 +30,12 @@ public final class Movie {
         this.numLikes = numLikes;
         this.rating = rating;
         this.numRatings = numRatings;
+    }
+
+    public void reinitializeTest() {
+        this.numLikes = 0;
+        this.numRatings = 0;
+        this.rating = 0.00;
     }
 
     public String getName() {

@@ -4,6 +4,7 @@ import outputdata.Output;
 import outputdata.OutputCommands;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProcessActions {
     private CurrentPage currentPage;
@@ -35,10 +36,7 @@ public class ProcessActions {
                         currentPage.setCurrentMoviesList(new ArrayList<>());
                         currentPage.setCurrentUser(null);
                     } else {
-                        outputCommands.setError("Error");
-                        outputCommands.setCurrentMoviesList(new ArrayList<>());
-                        outputCommands.setCurrentUser(null);
-                        output.getOutput().add(new OutputCommands(outputCommands));
+                        setError(outputCommands);
                     }
                 }
                 if (action.getPage().equals("movies")) {
@@ -54,10 +52,7 @@ public class ProcessActions {
                         outputCommands.setCurrentUser(currentPage.getCurrentUser());
                         output.getOutput().add(new OutputCommands(outputCommands));
                     } else {
-                        outputCommands.setError("Error");
-                        outputCommands.setCurrentMoviesList(new ArrayList<>());
-                        outputCommands.setCurrentUser(null);
-                        output.getOutput().add(new OutputCommands(outputCommands));
+                        setError(outputCommands);
                     }
                 }
                 if (action.getPage().equals("see details")) {
@@ -68,20 +63,23 @@ public class ProcessActions {
                                 action.getMovie());
                             if (filteredList.size() != 0) {
                                 currentPage.setPageName("see details");
+                                currentPage.setSeenMoviedetails(filteredList.get(0));
                             } else {
-                                outputCommands.setError("Error");
-                                outputCommands.setCurrentMoviesList(new ArrayList<>());
-                                outputCommands.setCurrentUser(null);
-                                output.getOutput().add(new OutputCommands(outputCommands));
+                                setError(outputCommands);
                             }
 
                     } else {
-                        outputCommands.setError("Error");
-                        outputCommands.setCurrentMoviesList(new ArrayList<>());
-                        outputCommands.setCurrentUser(null);
-                        output.getOutput().add(new OutputCommands(outputCommands));
+                        setError(outputCommands);
                     }
 
+                }
+                if (action.getPage().equals("upgrades")) {
+                    if (currentPage.getCurrentUser() != null) {
+                        currentPage.setPageName("upgrades");
+                        currentPage.setCurrentMoviesList(new ArrayList<>());
+                    } else {
+                        setError(outputCommands);
+                    }
                 }
             }
             if (action.getType().equals("on page")) {
@@ -145,10 +143,7 @@ public class ProcessActions {
                         outputCommands.setCurrentUser(currentPage.getCurrentUser());
                         output.getOutput().add(new OutputCommands(outputCommands));
                     } else {
-                        outputCommands.setError("Error");
-                        outputCommands.setCurrentMoviesList(new ArrayList<>());
-                        outputCommands.setCurrentUser(null);
-                        output.getOutput().add(new OutputCommands(outputCommands));
+                        setError(outputCommands);
                     }
                 } else if (action.getFeature().equals("filter")) {
                     if (currentPage.getPageName().equals("movies")) {
@@ -193,17 +188,71 @@ public class ProcessActions {
                             outputCommands.setCurrentUser(currentPage.getCurrentUser());
                             output.getOutput().add(new OutputCommands(outputCommands));
                         } else {
-                            outputCommands.setError("Error");
-                            outputCommands.setCurrentMoviesList(new ArrayList<>());
-                            outputCommands.setCurrentUser(null);
-                            output.getOutput().add(new OutputCommands(outputCommands));
+                            setError(outputCommands);
                         }
                     }
                 } else {
-                        outputCommands.setError("Error");
-                        outputCommands.setCurrentMoviesList(new ArrayList<>());
-                        outputCommands.setCurrentUser(null);
-                        output.getOutput().add(new OutputCommands(outputCommands));
+                        setError(outputCommands);
+                    }
+                } else if (action.getFeature().equals("buy tokens")) {
+                    if (currentPage.getPageName().equals("upgrades")) {
+                        if (Integer.parseInt(currentPage.getCurrentUser().getCredentials().getBalance()) >= Integer.parseInt(action.getCount())) {
+                            currentPage.getCurrentUser().setTokensCount(Integer.parseInt(action.getCount()));
+                            int substractBalance = Integer.parseInt(currentPage.getCurrentUser().getCredentials().getBalance()) - Integer.parseInt(action.getCount());
+                            currentPage.getCurrentUser().getCredentials().setBalance(Integer.toString(substractBalance));
+                        } else {
+                            setError(outputCommands);
+                        }
+                    } else {
+                        setError(outputCommands);
+                    }
+                } else if (action.getFeature().equals("buy premium account")) {
+                    if (currentPage.getPageName().equals("upgrades")) {
+                        if (currentPage.getCurrentUser().getTokensCount() >= 10) {
+                            currentPage.getCurrentUser().getCredentials().setAccountType("premium");
+                            currentPage.getCurrentUser().setTokensCount(currentPage.getCurrentUser().getTokensCount() - 10);
+                        } else {
+                            setError(outputCommands);
+                        }
+                    } else {
+                        setError(outputCommands);
+                    }
+                } else if (action.getFeature().equals("purchase")) {
+                    if (currentPage.getPageName().equals("upgrades")) {
+                        FilterExecutable filterExecutable =
+                                new FilterExecutable(new FilterByName());
+                        var filteredList = filterExecutable.executeFilter(currentPage.getCurrentMoviesList(),
+                                action.getMovie());
+                        Movie foundMovie = filteredList.get(0);
+                        purchaseMovie(currentPage, foundMovie, outputCommands);
+                    } else if (currentPage.getPageName().equals("see details")) {
+                        purchaseMovie(currentPage, currentPage.getSeenMoviedetails(), outputCommands);
+                    } else {
+                        setError(outputCommands);
+                    }
+                } else if (action.getFeature().equals("watch")) {
+                    if (currentPage.getPageName().equals("see details")) {
+                        if (!currentPage.getCurrentUser().getPurchasedMovies().contains(currentPage.getSeenMoviedetails())) {
+                            setError(outputCommands);
+                        } else if (!currentPage.getCurrentUser().getWatchedMovies().contains(currentPage.getSeenMoviedetails())) {
+                            currentPage.getCurrentUser().getWatchedMovies().add(currentPage.getSeenMoviedetails());
+                            outputCommands.setError(null);
+                            ArrayList<Movie> purchasedMovie = new ArrayList<>(List.of(currentPage.getSeenMoviedetails()));
+                            outputCommands.setCurrentMoviesList(purchasedMovie);
+                            outputCommands.setCurrentUser(currentPage.getCurrentUser());
+                            output.getOutput().add(new OutputCommands(outputCommands));
+                        }
+                    } else {
+                        setError(outputCommands);
+                    }
+                } else if (action.getFeature().equals("like")) {
+                    if (currentPage.getPageName().equals("see details")) {
+                        if (currentPage.getCurrentUser().getWatchedMovies().contains(currentPage.getSeenMoviedetails()) && !currentPage.getCurrentUser().getLikedMovies().contains(currentPage.getSeenMoviedetails())) {
+                            currentPage.getSeenMoviedetails().setNumLikes(currentPage.getSeenMoviedetails().getNumLikes() + 1);
+
+                        }
+                    } else {
+                        setError(outputCommands);
                     }
                 }
             }
@@ -211,6 +260,37 @@ public class ProcessActions {
         }
 
     }
+
+    private void purchaseMovie(CurrentPage currentPage, Movie movie, OutputCommands outputCommands) {
+        if (currentPage.getCurrentUser().getPurchasedMovies().contains(movie.getName())) {
+            setError(outputCommands);
+        } else if (currentPage.getCurrentUser().getCredentials().getAccountType().equals("premium") && currentPage.getCurrentUser().getNumFreePremiumMovies() > 0) {
+            currentPage.getCurrentUser().setNumFreePremiumMovies(currentPage.getCurrentUser().getNumFreePremiumMovies() - 1);
+            currentPage.getCurrentUser().getPurchasedMovies().add(movie);
+            outputCommands.setError(null);
+            ArrayList<Movie> purchasedMovie = new ArrayList<>(List.of(movie));
+            outputCommands.setCurrentMoviesList(purchasedMovie);
+            outputCommands.setCurrentUser(currentPage.getCurrentUser());
+            output.getOutput().add(new OutputCommands(outputCommands));
+        } else if (currentPage.getCurrentUser().getTokensCount() < 2) {
+            setError(outputCommands);
+        } else {
+            currentPage.getCurrentUser().setTokensCount(currentPage.getCurrentUser().getTokensCount() - 2);
+            currentPage.getCurrentUser().getPurchasedMovies().add(movie);
+            outputCommands.setError(null);
+            ArrayList<Movie> purchasedMovie = new ArrayList<>(List.of(movie));
+            outputCommands.setCurrentMoviesList(purchasedMovie);
+            outputCommands.setCurrentUser(currentPage.getCurrentUser());
+            output.getOutput().add(new OutputCommands(outputCommands));
+        }
+    }
+    private void setError(final OutputCommands outputCommands) {
+        outputCommands.setError("Error");
+        outputCommands.setCurrentMoviesList(new ArrayList<>());
+        outputCommands.setCurrentUser(null);
+        output.getOutput().add(new OutputCommands(outputCommands));
+    }
+
     private User checkUser(final Credentials credentials) {
         for (User user: input.getUsers()) {
             if (user.getCredentials().equals(credentials)) {
@@ -227,10 +307,7 @@ public class ProcessActions {
             currentPage.setPageName(pageName);
             currentPage.setCurrentMoviesList(null);
         } else {
-            outputCommands.setError("Error");
-            outputCommands.setCurrentMoviesList(new ArrayList<>());
-            outputCommands.setCurrentUser(null);
-            output.getOutput().add(new OutputCommands(outputCommands));
+            setError(outputCommands);
         }
     }
 }

@@ -19,7 +19,7 @@ public class Main {
                 Input.class);
         Output output = new Output();
         ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
-        CurrentPage currentPage = new CurrentPage("neautentificat", new ArrayList<>(), null);
+        CurrentPage currentPage = new CurrentPage("neautentificat", new ArrayList<>(), null, null);
         ProcessActions processActions = new ProcessActions(currentPage, inputData, output);
         processActions.readActions();
         writer.writeValue(new File(args[1]), output.getOutput());

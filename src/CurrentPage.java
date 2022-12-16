@@ -7,12 +7,13 @@ public final class CurrentPage {
     private String pageName;
     private List<Movie> currentMoviesList;
     private User currentUser;
+    private Movie seenMoviedetails;
 
-    public CurrentPage(final String pageName, final List<Movie> currentMoviesList,
-                       final User currentUser) {
+    public CurrentPage(String pageName, List<Movie> currentMoviesList, User currentUser, Movie seenMoviedetails) {
         this.pageName = pageName;
         this.currentMoviesList = currentMoviesList;
         this.currentUser = currentUser;
+        this.seenMoviedetails = seenMoviedetails;
     }
 
     public String getPageName() {
@@ -43,5 +44,13 @@ public final class CurrentPage {
     public void setCurrentUser(final User currentUser) {
 
         this.currentUser = currentUser;
+    }
+
+    public Movie getSeenMoviedetails() {
+        return seenMoviedetails;
+    }
+
+    public void setSeenMoviedetails(Movie seenMoviedetails) {
+        this.seenMoviedetails = seenMoviedetails;
     }
 }

@@ -10,8 +10,8 @@ import java.util.List;
 public interface IFilter {
     /**
      * @param movies
-     * @param feature
+     * @param features
      * @return
      */
-    List<Movie> filterMovies(List<Movie> movies, String feature);
+    List<Movie> filterMovies(List<Movie> movies, List<String> features);
 }

@@ -1,6 +1,4 @@
-import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import inputdata.Input;
 import outputdata.Output;
 
@@ -10,10 +8,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Main {
+public final class Main {
+    private Main() {
+    }
+
     /**
      * @param args
      * @throws IOException
+     * Created an object mapper that reads from input files and writes
+     * to output. Then created first page, initialized as homepage with null
+     * user and movie list and create process actions.
      */
     public static void main(final String[] args) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();

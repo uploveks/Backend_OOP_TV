@@ -14,10 +14,11 @@ public final class FilterExecutable {
 
     /**
      * @param movies
-     * @param feature
+     * @param features
      * @return
+     * Executes filters given in constructor.
      */
-    public List<Movie> executeFilter(final List<Movie> movies, final String feature) {
-        return iFilter.filterMovies(movies, feature);
+    public List<Movie> executeFilter(final List<Movie> movies, final List<String> features) {
+        return iFilter.filterMovies(movies, features);
     }
 }

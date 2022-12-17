@@ -1,12 +1,14 @@
 package inputdata;
 
+import utils.MagicNumbers;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class User {
     private Credentials credentials;
     private int tokensCount;
-    private int numFreePremiumMovies = 15;
+    private int numFreePremiumMovies = MagicNumbers.NUMBER_FREE_PREMIUM_MOVIES;
     private List<Movie> purchasedMovies = new ArrayList();
     private List<Movie> watchedMovies = new ArrayList();
     private List<Movie> likedMovies = new ArrayList();
@@ -18,7 +20,7 @@ public class User {
     public User(final Credentials credentials) {
         this.credentials = credentials;
         this.tokensCount = 0;
-        this.numFreePremiumMovies = 15;
+        this.numFreePremiumMovies = MagicNumbers.NUMBER_FREE_PREMIUM_MOVIES;
         this.purchasedMovies = new ArrayList();
         this.watchedMovies = new ArrayList();
         this.likedMovies = new ArrayList();
@@ -46,15 +48,6 @@ public class User {
         this.watchedMovies = user.getWatchedMovies();
         this.likedMovies = user.getLikedMovies();
         this.ratedMovies = user.getRatedMovies();
-    }
-
-    public void reinitializeTest() {
-        this.tokensCount = 0;
-        this.numFreePremiumMovies = 15;
-        this.purchasedMovies = new ArrayList();
-        this.watchedMovies = new ArrayList();
-        this.likedMovies = new ArrayList();
-        this.ratedMovies = new ArrayList();
     }
 
     /**

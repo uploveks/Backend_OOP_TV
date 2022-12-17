@@ -1,5 +1,7 @@
-import filter.*;
-import inputdata.*;
+import inputdata.Action;
+import inputdata.Input;
+import inputdata.Movie;
+import inputdata.User;
 import outputdata.Output;
 import outputdata.OutputCommands;
 
@@ -16,13 +18,12 @@ public class ProcessActions {
         this.output = output;
     }
 
+
     /**
-     *
+     * Process all the actions from change page and from on page.
      */
     public void readActions() {
         currentPage = new CurrentPage("neautentificat", new ArrayList<>(), null, null);
-        input.getUsers().forEach(User::reinitializeTest);
-        input.getMovies().forEach(Movie::reinitializeTest);
         OutputCommands outputCommands = new OutputCommands();
         BuyActions buyActions = BuyActions.getInstance();
         Error error = Error.getInstance();
@@ -30,12 +31,14 @@ public class ProcessActions {
         ChangePageActions changePageActions = new ChangePageActions();
         OnPageActions onPageActions = new OnPageActions();
         MovieActions movieActions = MovieActions.getInstance();
+        FilterActions filterActions = FilterActions.getInstance();
         for (Action action: input.getActions()) {
             if (action.getType().equals("change page")) {
-                changePageActions.changePage(currentPage, input, output, action, userActions, outputCommands, error);
-            }else if (action.getType().equals("on page")) {
-                onPageActions.onPage(currentPage, input, output, action, outputCommands, error, buyActions, userActions,
-                        movieActions);
+                changePageActions.changePage(currentPage, input, output, action, userActions,
+                        outputCommands, error);
+            } else if (action.getType().equals("on page")) {
+                onPageActions.onPage(currentPage, input, output, action, outputCommands, error,
+                        buyActions, userActions, movieActions, filterActions);
             }
 
         }

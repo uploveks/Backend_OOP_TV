@@ -13,18 +13,6 @@ public class OutputCommands {
     public OutputCommands() {
     }
 
-    public OutputCommands(final OutputCommands outputCommands) {
-        this.error = outputCommands.getError();
-        this.currentMoviesList = outputCommands.getCurrentMoviesList();
-        this.currentUser = outputCommands.getCurrentUser();
-    }
-
-    public OutputCommands(final String error, final List<Movie> currentMoviesList,
-                          final User currentUser) {
-        this.error = error;
-        this.currentMoviesList = currentMoviesList;
-        this.currentUser = currentUser;
-    }
 
     /**
      * @return

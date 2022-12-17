@@ -1,7 +1,6 @@
 import inputdata.Movie;
 import inputdata.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public final class CurrentPage {

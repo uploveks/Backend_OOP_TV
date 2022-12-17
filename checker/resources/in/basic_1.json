@@ -6,7 +6,7 @@
         "password": "secret",
         "accountType": "standard",
         "country": "Romania",
-        "balance": "200"
+        "balance": "50"
       }
     },
     {
@@ -99,30 +99,6 @@
     },
     {
       "type": "change page",
-      "page": "movies"
-    },
-    {
-      "type": "on page",
-      "feature": "search",
-      "startsWith": "Iubire din serai"
-    },
-    {
-      "type": "on page",
-      "feature": "filter",
-      "filters": {
-        "sort": {
-          "rating": "decreasing",
-          "duration": "decreasing"
-        },
-        "contains": {
-          "actors": [
-            "Keanu Reeves"
-          ]
-        }
-      }
-    },
-    {
-      "type": "change page",
       "page": "logout"
     },
     {
@@ -148,89 +124,6 @@
         "name": "Eduard",
         "password": "secret"
       }
-    },
-    {
-      "type": "change page",
-      "page": "upgrades"
-    },
-    {
-      "type": "on page",
-      "feature": "buy tokens",
-      "count": "50"
-    },
-    {
-      "type": "on page",
-      "feature": "buy premium account"
-    },
-    {
-      "type": "change page",
-      "page": "movies"
-    },
-    {
-      "type": "change page",
-      "page": "see details",
-      "movie": "AAA"
-    },
-    {
-      "type": "change page",
-      "page": "see details",
-      "movie": "BBBB"
-    },
-    {
-      "type": "change page",
-      "page": "see details",
-      "movie": "Titanic"
-    },
-    {
-      "type": "on page",
-      "feature": "purchase",
-      "movie": "Titanic"
-    },
-    {
-      "type": "on page",
-      "feature": "watch",
-      "movie": "Titanic"
-    },
-    {
-      "type": "on page",
-      "feature": "like",
-      "movie": "Titanic"
-    },
-    {
-      "type": "change page",
-      "page": "movies"
-    },
-    {
-      "type": "change page",
-      "page": "see details",
-      "movie": "John Wick: Chapter 3 - Parabellum"
-    },
-    {
-      "type": "on page",
-      "feature": "like",
-      "movie": "John Wick: Chapter 3 - Parabellum"
-    },
-    {
-      "type": "on page",
-      "feature": "rate",
-      "movie": "John Wick: Chapter 3 - Parabellum",
-      "rate": 5
-    },
-    {
-      "type": "on page",
-      "feature": "watch",
-      "movie": "John Wick: Chapter 3 - Parabellum"
-    },
-    {
-      "type": "on page",
-      "feature": "like",
-      "movie": "John Wick: Chapter 3 - Parabellum"
-    },
-    {
-      "type": "on page",
-      "feature": "rate",
-      "movie": "John Wick: Chapter 3 - Parabellum",
-      "rate": 5
     }
   ]
 }

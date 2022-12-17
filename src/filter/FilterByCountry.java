@@ -8,14 +8,20 @@ import java.util.List;
 public class FilterByCountry implements IFilter {
     /**
      * @param movies
-     * @param feature
+     * @param features
      * @return
+     * Method that checks in the movie list given movies that are not banned
+     * in the country given and adds it to a list that is returned at the end.
      */
-    public List<Movie> filterMovies(final List<Movie> movies, final String feature) {
+    @Override
+    public List<Movie> filterMovies(final List<Movie> movies, final List<String> features) {
         List<Movie> filteredMovies = new ArrayList<>();
         for (Movie movie : movies) {
-            if (!movie.getCountriesBanned().contains(feature)) {
-                filteredMovies.add(movie);
+            for (String feature : features) {
+                if (!movie.getCountriesBanned().contains(feature)) {
+                    filteredMovies.add(movie);
+                    break;
+                }
             }
         }
         return filteredMovies;

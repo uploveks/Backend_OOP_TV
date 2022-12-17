@@ -8,7 +8,6 @@ public final class Action {
     private Credentials credentials;
     private String feature;
     private String startsWith;
-
     private Filter filters;
     private String objectType;
     private List<Movie> movies;

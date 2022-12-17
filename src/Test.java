@@ -6,7 +6,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
 
 class Config {
     private String homework;
@@ -190,7 +196,8 @@ public final class Test {
                     printMessage(testFileName, "0/" + testScore, true);
                 }
             } catch (IOException e) {
-                printMessage(testFileName, "outputData.Output file badly formatted. Skipping test...");
+                printMessage(testFileName, "outputData.Output file badly formatted. "
+                        + "Skipping test...");
             }
         }
     }
@@ -214,7 +221,7 @@ public final class Test {
     }
 
     private static void preTestCleanUp() {
-//        TEST_OUT_FILE.delete();
+        TEST_OUT_FILE.delete();
     }
 
     private static void printMessage(

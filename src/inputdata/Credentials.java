@@ -21,6 +21,12 @@ public final class Credentials {
         this.balance = balance;
     }
 
+    /**
+     * @param o
+     * @return
+     * Method that checks if the name and password for
+     * login is the same as given in input.
+     */
     @Override
     public boolean equals(final Object o) {
         if (this == o) {

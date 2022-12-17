@@ -9,20 +9,23 @@ import java.util.List;
 
 public class Error {
 
-    private CurrentPage currentPage;
-    private Input input;
-    private Output output;
+    private static Error instance;
 
-    public Error(final CurrentPage currentPage, final Input input, final Output output) {
-        this.currentPage = currentPage;
-        this.input = input;
-        this.output = output;
+    private Error() {
+    }
+
+    public static Error getInstance() {
+        if (instance == null) {
+            instance = new Error();
+        }
+
+        return instance;
     }
 
     /**
      * @param outputCommands
      */
-    public void setError(final OutputCommands outputCommands) {
+    public void setError(final Output output, final OutputCommands outputCommands) {
         outputCommands.setError("Error");
         outputCommands.setCurrentMoviesList(new ArrayList<>());
         outputCommands.setCurrentUser(null);
@@ -32,7 +35,7 @@ public class Error {
     /**
      * @param outputCommands
      */
-    public void errorAuthenticate(final OutputCommands outputCommands) {
+    public void errorAuthenticate(final CurrentPage currentPage, final Output output, final OutputCommands outputCommands) {
         outputCommands.setError("Error");
         outputCommands.setCurrentMoviesList(new ArrayList<>());
         outputCommands.setCurrentUser(null);
@@ -45,7 +48,7 @@ public class Error {
      * @param movieList
      * @param user
      */
-    public void outputSuccess(final OutputCommands outputCommands, final List<Movie> movieList,
+    public void outputSuccess(final Output output, final OutputCommands outputCommands, final List<Movie> movieList,
                               final User user) {
         outputCommands.setError(null);
         outputCommands.setCurrentMoviesList(movieList);

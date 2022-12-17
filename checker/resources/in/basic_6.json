@@ -180,6 +180,57 @@
       "type": "change page",
       "page": "see details",
       "movie": "Titanic"
+    },
+    {
+      "type": "on page",
+      "feature": "purchase",
+      "movie": "Titanic"
+    },
+    {
+      "type": "on page",
+      "feature": "watch",
+      "movie": "Titanic"
+    },
+    {
+      "type": "on page",
+      "feature": "like",
+      "movie": "Titanic"
+    },
+    {
+      "type": "change page",
+      "page": "movies"
+    },
+    {
+      "type": "change page",
+      "page": "see details",
+      "movie": "John Wick: Chapter 3 - Parabellum"
+    },
+    {
+      "type": "on page",
+      "feature": "like",
+      "movie": "John Wick: Chapter 3 - Parabellum"
+    },
+    {
+      "type": "on page",
+      "feature": "rate",
+      "movie": "John Wick: Chapter 3 - Parabellum",
+      "rate": 5
+    },
+    {
+      "type": "on page",
+      "feature": "watch",
+      "movie": "John Wick: Chapter 3 - Parabellum"
+    },
+    {
+      "type": "on page",
+      "feature": "like",
+      "movie": "John Wick: Chapter 3 - Parabellum"
+    },
+    {
+      "type": "on page",
+      "feature": "rate",
+      "movie": "John Wick: Chapter 3 - Parabellum",
+      "rate": 5
     }
   ]
 }

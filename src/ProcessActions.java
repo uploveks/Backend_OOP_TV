@@ -24,17 +24,17 @@ public class ProcessActions {
         input.getUsers().forEach(User::reinitializeTest);
         input.getMovies().forEach(Movie::reinitializeTest);
         OutputCommands outputCommands = new OutputCommands();
-        BuyActions buyActions = new BuyActions(currentPage, input, output);
-        Error error = new Error(currentPage, input, output);
-        UserActions userActions = new UserActions(currentPage, input, output);
-        ChangePageActions changePageActions = new ChangePageActions(currentPage, input, output);
-        OnPageActions onPageActions = new OnPageActions(currentPage, input, output);
-        MovieActions movieActions = new MovieActions(currentPage, input, output);
+        BuyActions buyActions = BuyActions.getInstance();
+        Error error = Error.getInstance();
+        UserActions userActions =  UserActions.getInstance();
+        ChangePageActions changePageActions = new ChangePageActions();
+        OnPageActions onPageActions = new OnPageActions();
+        MovieActions movieActions = MovieActions.getInstance();
         for (Action action: input.getActions()) {
             if (action.getType().equals("change page")) {
-                changePageActions.changePage(action, userActions, outputCommands, error);
+                changePageActions.changePage(currentPage, input, output, action, userActions, outputCommands, error);
             }else if (action.getType().equals("on page")) {
-                onPageActions.onPage(action, outputCommands, error, buyActions, userActions,
+                onPageActions.onPage(currentPage, input, output, action, outputCommands, error, buyActions, userActions,
                         movieActions);
             }
 

@@ -4,14 +4,17 @@ import outputdata.Output;
 import outputdata.OutputCommands;
 
 public class BuyActions {
-    private CurrentPage currentPage;
-    private Input input;
-    private Output output;
+    private static BuyActions instance;
 
-    public BuyActions(final CurrentPage currentPage, final Input input, final Output output) {
-        this.currentPage = currentPage;
-        this.input = input;
-        this.output = output;
+    private BuyActions() {
+    }
+
+    public static BuyActions getInstance() {
+        if (instance == null) {
+            instance = new BuyActions();
+        }
+
+        return instance;
     }
 
     /**
@@ -19,7 +22,7 @@ public class BuyActions {
      * @param outputCommands
      * @param error
      */
-    public void buyTokens(final Action action, final OutputCommands outputCommands,
+    public void buyTokens(final CurrentPage currentPage, final Output output, final Action action, final OutputCommands outputCommands,
                           final Error error) {
         if (currentPage.getPageName().equals("upgrades")) {
             if (Integer.parseInt(currentPage.getCurrentUser().getCredentials().getBalance())
@@ -27,17 +30,17 @@ public class BuyActions {
                 currentPage.getCurrentUser().setTokensCount(Integer.parseInt(action.getCount()));
                 int previousBalance = Integer.parseInt(currentPage.getCurrentUser().
                         getCredentials().getBalance());
-                int substractBalance = previousBalance
+                int subtractBalance = previousBalance
                         - Integer.parseInt(action.getCount());
+                currentPage.getCurrentUser().getCredentials().setBalance(
+                        String.valueOf(subtractBalance));
                 outputCommands.getCurrentUser().getCredentials().setBalance(currentPage.getCurrentUser().
                         getCredentials().getBalance());
-                currentPage.getCurrentUser().getCredentials().setBalance(
-                        String.valueOf(substractBalance));
             } else {
-                error.setError(outputCommands);
+                error.setError(output, outputCommands);
             }
         } else {
-            error.setError(outputCommands);
+            error.setError(output, outputCommands);
         }
     }
 
@@ -45,18 +48,18 @@ public class BuyActions {
      * @param outputCommands
      * @param error
      */
-    public void buyPremiumAccount(final OutputCommands outputCommands, final Error error) {
+    public void buyPremiumAccount(final CurrentPage currentPage, final Output output, final OutputCommands outputCommands, final Error error) {
         if (currentPage.getPageName().equals("upgrades")) {
-                        if (currentPage.getCurrentUser().getTokensCount() >= 10) {
+                        if (currentPage.getCurrentUser().getTokensCount() > 10) {
                             currentPage.getCurrentUser().getCredentials().
                                     setAccountType("premium");
                             currentPage.getCurrentUser().setTokensCount(currentPage.
                                     getCurrentUser().getTokensCount() - 10);
                         } else {
-                            error.setError(outputCommands);
+                            error.setError(output, outputCommands);
                         }
                     } else {
-                        error.setError(outputCommands);
+                        error.setError(output, outputCommands);
                     }
     }
 }

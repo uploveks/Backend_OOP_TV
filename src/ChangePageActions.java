@@ -9,15 +9,8 @@ import outputdata.OutputCommands;
 import java.util.ArrayList;
 
 public class ChangePageActions {
-    private CurrentPage currentPage;
-    private Input input;
-    private Output output;
 
-    public ChangePageActions(final CurrentPage currentPage, final Input input,
-                             final Output output) {
-        this.currentPage = currentPage;
-        this.input = input;
-        this.output = output;
+    public ChangePageActions() {
     }
 
     /**
@@ -26,13 +19,13 @@ public class ChangePageActions {
      * @param outputCommands
      * @param error
      */
-    public void changePage(final Action action, final UserActions userActions,
+    public void changePage(final CurrentPage currentPage, final Input input, final Output output, final Action action, final UserActions userActions,
                            final OutputCommands outputCommands, final Error error) {
         if (action.getPage().equals("login")) {
-            userActions.executeChangePage(currentPage, "login", outputCommands, error);
+            userActions.executeChangePage(currentPage, output, "login", outputCommands, error);
         }
         if (action.getPage().equals("register")) {
-            userActions.executeChangePage(currentPage, "register", outputCommands, error);
+            userActions.executeChangePage(currentPage, output, "register", outputCommands, error);
         }
         if (action.getPage().equals("logout")) {
             if (currentPage.getCurrentUser() != null) {
@@ -40,7 +33,7 @@ public class ChangePageActions {
                 currentPage.setCurrentMoviesList(new ArrayList<>());
                 currentPage.setCurrentUser(null);
             } else {
-                error.setError(outputCommands);
+                error.setError(output, outputCommands);
             }
         }
         if (action.getPage().equals("movies")) {
@@ -56,7 +49,7 @@ public class ChangePageActions {
                 outputCommands.setCurrentUser(currentPage.getCurrentUser());
                 output.getOutput().add(new OutputCommands(outputCommands));
             } else {
-                error.setError(outputCommands);
+                error.setError(output, outputCommands);
             }
         }
         if (action.getPage().equals("see details")) {
@@ -69,11 +62,11 @@ public class ChangePageActions {
                     currentPage.setPageName("see details");
                     currentPage.setSeenMovieDetails(filteredList.get(0));
                 } else {
-                    error.setError(outputCommands);
+                    error.setError(output, outputCommands);
                 }
 
             } else {
-                error.setError(outputCommands);
+                error.setError(output, outputCommands);
             }
 
         }
@@ -82,7 +75,7 @@ public class ChangePageActions {
                 currentPage.setCurrentMoviesList(new ArrayList<>());
                 currentPage.setPageName("upgrades");
             } else {
-                error.setError(outputCommands);
+                error.setError(output, outputCommands);
             }
         }
     }

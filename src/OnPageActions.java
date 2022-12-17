@@ -5,14 +5,9 @@ import outputdata.OutputCommands;
 
 
 public class OnPageActions {
-    private CurrentPage currentPage;
-    private Input input;
-    private Output output;
 
-    public OnPageActions(final CurrentPage currentPage, final Input input, final Output output) {
-        this.currentPage = currentPage;
-        this.input = input;
-        this.output = output;
+    public OnPageActions() {
+
     }
 
     /**
@@ -23,13 +18,13 @@ public class OnPageActions {
      * @param userActions
      * @param movieActions
      */
-    public void onPage(final Action action, final OutputCommands outputCommands,
+    public void onPage(final CurrentPage currentPage, final Input input, final Output output, final Action action, final OutputCommands outputCommands,
                        final Error error, final BuyActions buyActions,
                        final UserActions userActions, final MovieActions movieActions) {
         if (action.getFeature().equals("login")) {
-            userActions.loginOnPage(action, outputCommands, error);
+            userActions.loginOnPage(currentPage, input, output, action, outputCommands, error);
         } else if (action.getFeature().equals("register")) {
-            userActions.registerOnPage(action, outputCommands, error);
+            userActions.registerOnPage(currentPage, input, output, action, outputCommands, error);
         } else if (action.getFeature().equals("search")) {
             if (currentPage.getPageName().equals("movies")) {
                 FilterExecutable filterExecutable =
@@ -37,9 +32,9 @@ public class OnPageActions {
                 var filteredList = filterExecutable.executeFilter(input.getMovies(),
                         action.getStartsWith());
 //                currentPage.setCurrentMoviesList(filteredList);
-                error.outputSuccess(outputCommands, filteredList, currentPage.getCurrentUser());
+                error.outputSuccess(output, outputCommands, filteredList, currentPage.getCurrentUser());
             } else {
-                error.setError(outputCommands);
+                error.setError(output, outputCommands);
             }
         } else if (action.getFeature().equals("filter")) {
             if (currentPage.getPageName().equals("movies")) {
@@ -93,15 +88,15 @@ public class OnPageActions {
                             currentPage.setCurrentMoviesList(filteredList);
                         }
                     }
-                error.outputSuccess(outputCommands, currentPage.getCurrentMoviesList(),
+                error.outputSuccess(output, outputCommands, currentPage.getCurrentMoviesList(),
                         currentPage.getCurrentUser());
             } else {
-                error.setError(outputCommands);
+                error.setError(output, outputCommands);
             }
         } else if (action.getFeature().equals("buy tokens")) {
-            buyActions.buyTokens(action, outputCommands, error);
+            buyActions.buyTokens(currentPage, output, action, outputCommands, error);
         } else if (action.getFeature().equals("buy premium account")) {
-            buyActions.buyPremiumAccount(outputCommands, error);
+            buyActions.buyPremiumAccount(currentPage, output, outputCommands, error);
         } else if (action.getFeature().equals("purchase")) {
             if (currentPage.getPageName().equals("upgrades")) {
                 FilterExecutable filterExecutable =
@@ -110,49 +105,49 @@ public class OnPageActions {
                         currentPage.getCurrentMoviesList(),
                         action.getMovie());
                 Movie foundMovie = filteredList.get(0);
-                movieActions.purchaseMovie(foundMovie, outputCommands, error);
+                movieActions.purchaseMovie(currentPage, output, foundMovie, outputCommands, error);
             } else if (currentPage.getPageName().equals("see details")) {
-                movieActions.purchaseMovie(currentPage.getSeenMoviedetails(),
+                movieActions.purchaseMovie(currentPage, output, currentPage.getSeenMoviedetails(),
                         outputCommands, error);
             } else {
-                error.setError(outputCommands);
+                error.setError(output, outputCommands);
             }
         } else if (action.getFeature().equals("watch")) {
-            movieActions.watchMovie(outputCommands, error);
+            movieActions.watchMovie(currentPage, output, outputCommands, error);
         } else if (action.getFeature().equals("like")) {
                     if (currentPage.getPageName().equals("see details")) {
                         if (currentPage.getCurrentUser().getWatchedMovies().contains(currentPage.getSeenMoviedetails())
-//                                && !currentPage.getCurrentUser().getLikedMovies().contains(currentPage.getSeenMoviedetails())
+                                && !currentPage.getCurrentUser().getLikedMovies().contains(currentPage.getSeenMoviedetails())
                                 ) {
                             currentPage.getSeenMoviedetails().setNumLikes(currentPage.getSeenMoviedetails().getNumLikes() + 1);
-//                            for (User user: input.getUsers()) {
-//                                for (Movie watchedMovie: user.getWatchedMovies()) {
-//                                    if (watchedMovie.getName().equals(currentPage.getSeenMoviedetails().getName())) {
-//                                        watchedMovie.setNumLikes(currentPage.getSeenMoviedetails().getNumLikes());
-//                                    }
-//                                }
-//                                for (Movie likedMovies: user.getLikedMovies()) {
-//                                    if (likedMovies.getName().equals(currentPage.getSeenMoviedetails().getName())) {
-//                                        likedMovies.setNumLikes(currentPage.getSeenMoviedetails().getNumLikes());
-//                                    }
-//                                }
-//                                for (Movie purchasedMovies: user.getLikedMovies()) {
-//                                    if (purchasedMovies.getName().equals(currentPage.getSeenMoviedetails().getName())) {
-//                                        purchasedMovies.setNumLikes(currentPage.getSeenMoviedetails().getNumLikes());
-//                                    }
-//                                }
-//                                for (Movie ratedMovies: user.getLikedMovies()) {
-//                                    if (ratedMovies.getName().equals(currentPage.getSeenMoviedetails().getName())) {
-//                                        ratedMovies.setNumLikes(currentPage.getSeenMoviedetails().getNumLikes());
-//                                    }
-//                                }
-//                            }
-                        error.outputSuccess(outputCommands, currentPage.getCurrentMoviesList(), currentPage.getCurrentUser());
+                            for (User user: input.getUsers()) {
+                                for (Movie watchedMovie: user.getWatchedMovies()) {
+                                    if (watchedMovie.getName().equals(currentPage.getSeenMoviedetails().getName())) {
+                                        user.getWatchedMovies().set(user.getWatchedMovies().indexOf(currentPage.getSeenMoviedetails()), currentPage.getSeenMoviedetails());
+                                    }
+                                }
+                                for (Movie likedMovies: user.getLikedMovies()) {
+                                    if (likedMovies.getName().equals(currentPage.getSeenMoviedetails().getName())) {
+                                        user.getLikedMovies().set(user.getLikedMovies().indexOf(currentPage.getSeenMoviedetails()), currentPage.getSeenMoviedetails());
+                                    }
+                                }
+                                for (Movie purchasedMovies: user.getLikedMovies()) {
+                                    if (purchasedMovies.getName().equals(currentPage.getSeenMoviedetails().getName())) {
+                                        user.getPurchasedMovies().set(user.getPurchasedMovies().indexOf(currentPage.getSeenMoviedetails()), currentPage.getSeenMoviedetails());
+                                    }
+                                }
+                                for (Movie ratedMovies: user.getLikedMovies()) {
+                                    if (ratedMovies.getName().equals(currentPage.getSeenMoviedetails().getName())) {
+                                        user.getRatedMovies().set(user.getRatedMovies().indexOf(currentPage.getSeenMoviedetails()), currentPage.getSeenMoviedetails());
+                                    }
+                                }
+                            }
+                        error.outputSuccess(output, outputCommands, currentPage.getCurrentMoviesList(), currentPage.getCurrentUser());
                         } else {
-                            error.setError(outputCommands);
+                            error.setError(output, outputCommands);
                         }
                     } else {
-                        error.setError(outputCommands);
+                        error.setError(output, outputCommands);
                     }
         } else if (action.getFeature().equals("rate")) {
             if (currentPage.getPageName().equals("see details")) {
@@ -187,12 +182,12 @@ public class OnPageActions {
                             }
                         }
                     }
-                    error.outputSuccess(outputCommands, currentPage.getCurrentMoviesList(), currentPage.getCurrentUser());
+                    error.outputSuccess(output, outputCommands, currentPage.getCurrentMoviesList(), currentPage.getCurrentUser());
                 } else {
-                    error.setError(outputCommands);
+                    error.setError(output, outputCommands);
                 }
             } else {
-                error.setError(outputCommands);
+                error.setError(output, outputCommands);
             }
         }
     }

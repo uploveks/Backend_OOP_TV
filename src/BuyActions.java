@@ -34,8 +34,8 @@ public class BuyActions {
                         - Integer.parseInt(action.getCount());
                 currentPage.getCurrentUser().getCredentials().setBalance(
                         String.valueOf(subtractBalance));
-                outputCommands.getCurrentUser().getCredentials().setBalance(currentPage.getCurrentUser().
-                        getCredentials().getBalance());
+                //outputCommands.getCurrentUser().getCredentials().setBalance(currentPage.getCurrentUser().
+                 //       getCredentials().getBalance());
             } else {
                 error.setError(output, outputCommands);
             }

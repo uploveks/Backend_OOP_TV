@@ -47,7 +47,7 @@ public class ChangePageActions {
                 outputCommands.setError(null);
                 outputCommands.setCurrentMoviesList(currentPage.getCurrentMoviesList());
                 outputCommands.setCurrentUser(currentPage.getCurrentUser());
-                output.getOutput().add(new OutputCommands(outputCommands));
+                output.addOutputCommands(outputCommands);
             } else {
                 error.setError(output, outputCommands);
             }

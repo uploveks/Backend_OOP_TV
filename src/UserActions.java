@@ -31,7 +31,7 @@ public class UserActions {
         if (currentPage.getPageName().equals("neautentificat")
                 && currentPage.getCurrentUser() == null) {
             currentPage.setPageName(pageName);
-            currentPage.setCurrentMoviesList(null);
+            currentPage.setCurrentMoviesList(new ArrayList<>());
         } else {
             error.setError(output, outputCommands);
         }
@@ -49,9 +49,9 @@ public class UserActions {
             if (checkUser(input, action.getCredentials()) != null) {
                 currentPage.setCurrentUser(checkUser(input, action.getCredentials()));
                 outputCommands.setError(null);
-                outputCommands.setCurrentMoviesList(new ArrayList<>());
+                outputCommands.setCurrentMoviesList(currentPage.getCurrentMoviesList());
                 outputCommands.setCurrentUser(checkUser(input, action.getCredentials()));
-                output.getOutput().add(new OutputCommands(outputCommands));
+                output.addOutputCommands(outputCommands);
             } else {
                 error.errorAuthenticate(currentPage, output, outputCommands);
             }
@@ -76,7 +76,7 @@ public class UserActions {
                 outputCommands.setError(null);
                 outputCommands.setCurrentMoviesList(new ArrayList<>());
                 outputCommands.setCurrentUser(newUser);
-                output.getOutput().add(new OutputCommands(outputCommands));
+                output.addOutputCommands(outputCommands);
             } else {
                 error.errorAuthenticate(currentPage, output, outputCommands);
             }

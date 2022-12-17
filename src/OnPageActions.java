@@ -31,7 +31,7 @@ public class OnPageActions {
                         new FilterExecutable(new FilterByName());
                 var filteredList = filterExecutable.executeFilter(input.getMovies(),
                         action.getStartsWith());
-//                currentPage.setCurrentMoviesList(filteredList);
+                currentPage.setCurrentMoviesList(filteredList);
                 error.outputSuccess(output, outputCommands, filteredList, currentPage.getCurrentUser());
             } else {
                 error.setError(output, outputCommands);
@@ -40,7 +40,7 @@ public class OnPageActions {
             if (currentPage.getPageName().equals("movies")) {
                 FilterExecutable filterExecutableCountry =
                         new FilterExecutable(new FilterByCountry());
-                var filteredCountryList = filterExecutableCountry.executeFilter(currentPage.getCurrentMoviesList(),
+                var filteredCountryList = filterExecutableCountry.executeFilter(input.getMovies(),
                         currentPage.getCurrentUser().getCredentials().getCountry());
                 currentPage.setCurrentMoviesList(filteredCountryList);
                 if (action.getFilters().getSort() != null) {
@@ -142,6 +142,11 @@ public class OnPageActions {
                                     }
                                 }
                             }
+                            for (Movie movie: input.getMovies()) {
+                                if (movie.getName().equals(currentPage.getSeenMoviedetails().getName())) {
+                                    input.getMovies().set(input.getMovies().indexOf(currentPage.getSeenMoviedetails()), currentPage.getSeenMoviedetails());
+                                }
+                            }
                         error.outputSuccess(output, outputCommands, currentPage.getCurrentMoviesList(), currentPage.getCurrentUser());
                         } else {
                             error.setError(output, outputCommands);
@@ -180,6 +185,11 @@ public class OnPageActions {
                                 ratedMovies.setNumRatings(currentPage.getSeenMoviedetails().getNumRatings());
                                 ratedMovies.setRating(currentPage.getSeenMoviedetails().getRating());
                             }
+                        }
+                    }
+                    for (Movie movie: input.getMovies()) {
+                        if (movie.getName().equals(currentPage.getSeenMoviedetails().getName())) {
+                            input.getMovies().set(input.getMovies().indexOf(currentPage.getSeenMoviedetails()), currentPage.getSeenMoviedetails());
                         }
                     }
                     error.outputSuccess(output, outputCommands, currentPage.getCurrentMoviesList(), currentPage.getCurrentUser());

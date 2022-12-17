@@ -36,7 +36,7 @@ public class MovieActions {
                     getNumFreePremiumMovies() - 1);
             currentPage.getCurrentUser().getPurchasedMovies().add(movie);
             ArrayList<Movie> purchasedMovie = new ArrayList<>(List.of(movie));
-            error.outputSuccess(output, outputCommands, purchasedMovie, currentPage.getCurrentUser());
+            error.outputSuccess(output, outputCommands, currentPage.getCurrentMoviesList(), currentPage.getCurrentUser());
         } else if (currentPage.getCurrentUser().getTokensCount() < 2) {
             error.setError(output, outputCommands);
         } else {
@@ -44,7 +44,7 @@ public class MovieActions {
                     getTokensCount() - 2);
             currentPage.getCurrentUser().getPurchasedMovies().add(movie);
             ArrayList<Movie> purchasedMovie = new ArrayList<>(List.of(movie));
-            error.outputSuccess(output, outputCommands, purchasedMovie, currentPage.getCurrentUser());
+            error.outputSuccess(output, outputCommands, currentPage.getCurrentMoviesList(), currentPage.getCurrentUser());
         }
     }
 

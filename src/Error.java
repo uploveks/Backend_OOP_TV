@@ -29,7 +29,7 @@ public class Error {
         outputCommands.setError("Error");
         outputCommands.setCurrentMoviesList(new ArrayList<>());
         outputCommands.setCurrentUser(null);
-        output.getOutput().add(new OutputCommands(outputCommands));
+        output.addOutputCommands(outputCommands);
     }
 
     /**
@@ -40,7 +40,7 @@ public class Error {
         outputCommands.setCurrentMoviesList(new ArrayList<>());
         outputCommands.setCurrentUser(null);
         currentPage.setPageName("neautentificat");
-        output.getOutput().add(new OutputCommands(outputCommands));
+        output.addOutputCommands(outputCommands);
     }
 
     /**
@@ -53,6 +53,6 @@ public class Error {
         outputCommands.setError(null);
         outputCommands.setCurrentMoviesList(movieList);
         outputCommands.setCurrentUser(user);
-        output.getOutput().add(new OutputCommands(outputCommands));
+        output.addOutputCommands(outputCommands);
     }
 }

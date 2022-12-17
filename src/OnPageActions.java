@@ -23,6 +23,7 @@ public class OnPageActions {
      * @param buyActions
      * @param userActions
      * @param movieActions
+     * Method that implements all the actions for "on page"
      */
     public void onPage(final CurrentPage currentPage, final Input input, final Output output,
                        final Action action, final OutputCommands outputCommands,

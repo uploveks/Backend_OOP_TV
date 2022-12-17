@@ -1,6 +1,2 @@
 Starting audit...
-[ERROR] D:\POO-Laborator\Tema2\proiect1\.\src\ChangePageActions.java:33: Line is longer than 100 characters (found 105). [LineLength]
-[ERROR] D:\POO-Laborator\Tema2\proiect1\.\src\ProcessActions.java:3:8: Unused import - inputdata.Movie. [UnusedImports]
-[ERROR] D:\POO-Laborator\Tema2\proiect1\.\src\ProcessActions.java:4:8: Unused import - inputdata.User. [UnusedImports]
 Audit done.
-Checkstyle ends with 3 errors.

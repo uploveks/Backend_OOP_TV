@@ -30,7 +30,8 @@ public class ChangePageActions {
                            final OutputCommands outputCommands, final Error error) {
         switch (action.getPage()) {
             case "login":
-                userActions.loginRegisterChangePage(currentPage, output, "login", outputCommands, error);
+                userActions.loginRegisterChangePage(currentPage, output, "login",
+                        outputCommands, error);
                 break;
             case "register":
                 userActions.loginRegisterChangePage(currentPage, output, "register", outputCommands,

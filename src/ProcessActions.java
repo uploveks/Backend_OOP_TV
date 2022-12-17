@@ -1,7 +1,5 @@
 import inputdata.Action;
 import inputdata.Input;
-import inputdata.Movie;
-import inputdata.User;
 import outputdata.Output;
 import outputdata.OutputCommands;
 

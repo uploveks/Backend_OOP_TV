@@ -3,7 +3,9 @@ package inputdata;
 import utils.MagicNumbers;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class User {
     private Credentials credentials;
@@ -13,6 +15,7 @@ public class User {
     private List<Movie> watchedMovies = new ArrayList();
     private List<Movie> likedMovies = new ArrayList();
     private List<Movie> ratedMovies = new ArrayList();
+    private Queue<Notifications> notifications = new LinkedList<>();
 
     public User() {
     }
@@ -25,12 +28,13 @@ public class User {
         this.watchedMovies = new ArrayList();
         this.likedMovies = new ArrayList();
         this.ratedMovies = new ArrayList();
+        this.notifications = new LinkedList<>();
     }
 
     public User(final Credentials credentials, final int tokensCount,
                 final int numFreePremiumMovies, final List<Movie> purchasedMovies,
                 final List<Movie> watchedMovies, final List<Movie> likedMovies,
-                final List<Movie> ratedMovies) {
+                final List<Movie> ratedMovies, final Queue<Notifications> notifications) {
         this.credentials = credentials;
         this.tokensCount = tokensCount;
         this.numFreePremiumMovies = numFreePremiumMovies;
@@ -38,6 +42,7 @@ public class User {
         this.watchedMovies = watchedMovies;
         this.likedMovies = likedMovies;
         this.ratedMovies = ratedMovies;
+        this.notifications = notifications;
     }
 
     public User(final User user) {
@@ -160,5 +165,13 @@ public class User {
     public void setRatedMovies(final List<Movie> ratedMovies) {
 
         this.ratedMovies = ratedMovies;
+    }
+
+    public Queue<Notifications> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(final Queue<Notifications> notifications) {
+        this.notifications = notifications;
     }
 }

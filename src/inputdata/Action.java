@@ -14,6 +14,9 @@ public final class Action {
     private String count;
     private String movie;
     private Integer rate;
+    private String deletedMovie;
+    private Movie addedMovie;
+    private String subscribedGenre;
 
     public Action() {
     }
@@ -21,7 +24,7 @@ public final class Action {
     public Action(final String type, final String page, final Credentials credentials,
                   final String feature, final String startsWith, final Filter filters,
                   final String objectType, final List<Movie> movies, final String count,
-                  final String movie, final Integer rate) {
+                  final String movie, final Integer rate, final String deletedMovie, final Movie addedMovie, final String subscribedGenre) {
         this.type = type;
         this.page = page;
         this.credentials = credentials;
@@ -33,6 +36,9 @@ public final class Action {
         this.count = count;
         this.movie = movie;
         this.rate = rate;
+        this.deletedMovie = deletedMovie;
+        this.addedMovie = addedMovie;
+        this.subscribedGenre = subscribedGenre;
     }
 
     public String getType() {
@@ -121,5 +127,29 @@ public final class Action {
 
     public void setRate(final Integer rate) {
         this.rate = rate;
+    }
+
+    public String getDeletedMovie() {
+        return deletedMovie;
+    }
+
+    public void setDeletedMovie(final String deletedMovie) {
+        this.deletedMovie = deletedMovie;
+    }
+
+    public Movie getAddedMovie() {
+        return addedMovie;
+    }
+
+    public void setAddedMovie(final Movie addedMovie) {
+        this.addedMovie = addedMovie;
+    }
+
+    public String getSubscribedGenre() {
+        return subscribedGenre;
+    }
+
+    public void setSubscribedGenre(final String subscribedGenre) {
+        this.subscribedGenre = subscribedGenre;
     }
 }

@@ -1,5 +1,6 @@
 package inputdata;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import utils.MagicNumbers;
 
 import java.util.ArrayList;
@@ -16,6 +17,8 @@ public class User {
     private List<Movie> likedMovies = new ArrayList();
     private List<Movie> ratedMovies = new ArrayList();
     private Queue<Notifications> notifications = new LinkedList<>();
+    @JsonIgnore
+    private List<String> subscribedGenres = new ArrayList<>();
 
     public User() {
     }
@@ -34,7 +37,8 @@ public class User {
     public User(final Credentials credentials, final int tokensCount,
                 final int numFreePremiumMovies, final List<Movie> purchasedMovies,
                 final List<Movie> watchedMovies, final List<Movie> likedMovies,
-                final List<Movie> ratedMovies, final Queue<Notifications> notifications) {
+                final List<Movie> ratedMovies, final Queue<Notifications> notifications,
+                final List<String> subscribedGenres) {
         this.credentials = credentials;
         this.tokensCount = tokensCount;
         this.numFreePremiumMovies = numFreePremiumMovies;
@@ -43,6 +47,7 @@ public class User {
         this.likedMovies = likedMovies;
         this.ratedMovies = ratedMovies;
         this.notifications = notifications;
+        this.subscribedGenres = subscribedGenres;
     }
 
     public User(final User user) {
@@ -173,5 +178,13 @@ public class User {
 
     public void setNotifications(final Queue<Notifications> notifications) {
         this.notifications = notifications;
+    }
+
+    public List<String> getSubscribedGenres() {
+        return subscribedGenres;
+    }
+
+    public void setSubscribedGenres(final List<String> subscribedGenres) {
+        this.subscribedGenres = subscribedGenres;
     }
 }

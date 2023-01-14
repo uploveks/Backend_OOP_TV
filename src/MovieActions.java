@@ -191,4 +191,22 @@ public final class MovieActions {
         error.outputSuccess(output, outputCommands, currentPage.getCurrentMoviesList(),
                 currentPage.getCurrentUser());
     }
+
+    public void subscribe(final CurrentPage currentPage, final Action action, final Output output,
+                          final Error error, final OutputCommands outputCommands) {
+        if (!currentPage.getPageName().equals("see details")) {
+            error.setError(output, outputCommands);
+            return;
+        }
+        if (!currentPage.getSeenMoviedetails().getGenres().contains(action.getSubscribedGenre())) {
+            error.setError(output, outputCommands);
+            return;
+        }
+        if (currentPage.getCurrentUser().getSubscribedGenres().contains(action.getSubscribedGenre())) {
+            error.setError(output, outputCommands);
+            return;
+        }
+        currentPage.getCurrentUser().getSubscribedGenres().add(action.getSubscribedGenre());
+
+    }
 }

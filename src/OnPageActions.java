@@ -93,6 +93,9 @@ public class OnPageActions {
             case "rate":
                 movieActions.rateMovie(currentPage, action, output, error, outputCommands);
                 break;
+            case "subscribe":
+                movieActions.subscribe(currentPage, action, output, error, outputCommands);
+                break;
             default:
                 break;
         }

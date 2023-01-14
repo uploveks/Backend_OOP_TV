@@ -45,6 +45,7 @@ public final class UserActions {
         }
         currentPage.setPageName(pageName);
         currentPage.setCurrentMoviesList(new ArrayList<>());
+        ProcessActions.getInstance().getPagesStack().push(currentPage);
     }
 
 

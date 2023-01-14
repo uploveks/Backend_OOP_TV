@@ -19,16 +19,15 @@ public class ChangePageActions {
      * @param currentPage
      * @param input
      * @param output
-     * @param action
      * @param userActions
      * @param outputCommands
      * @param error
      * Method that implements all the actions for "change page"
      */
     public void changePage(final CurrentPage currentPage, final Input input, final Output output,
-                           final Action action, final UserActions userActions,
+                           final String pageName, final String movieName, final UserActions userActions,
                            final OutputCommands outputCommands, final Error error) {
-        switch (action.getPage()) {
+        switch (pageName) {
             case "login":
                 userActions.loginRegisterChangePage(currentPage, output, "login",
                         outputCommands, error);
@@ -45,6 +44,7 @@ public class ChangePageActions {
                 currentPage.setPageName("neautentificat");
                 currentPage.setCurrentMoviesList(new ArrayList<>());
                 currentPage.setCurrentUser(null);
+                ProcessActions.getInstance().getPagesStack().clear();
                 break;
             case "movies":
                 if (currentPage.getCurrentUser() == null) {
@@ -57,6 +57,7 @@ public class ChangePageActions {
                         Collections.singletonList(currentPage.getCurrentUser().getCredentials().
                                 getCountry()));
                 currentPage.setCurrentMoviesList(filteredList);
+                ProcessActions.getInstance().getPagesStack().push(currentPage);
                 error.outputSuccess(output, outputCommands, currentPage.getCurrentMoviesList(),
                         currentPage.getCurrentUser());
                 break;
@@ -67,7 +68,7 @@ public class ChangePageActions {
                 }
                 FilterExecutable filterExecutable1 = new FilterExecutable(new FilterByName());
                 var filteredList1 = filterExecutable1.executeFilter(currentPage.
-                        getCurrentMoviesList(), Collections.singletonList(action.getMovie()));
+                        getCurrentMoviesList(), Collections.singletonList(movieName));
                 if (filteredList1.size() == 0) {
                     error.setError(output, outputCommands);
                     return;
@@ -75,6 +76,7 @@ public class ChangePageActions {
                 currentPage.setPageName("see details");
                 currentPage.setSeenMovieDetails(filteredList1.get(0));
                 currentPage.setCurrentMoviesList(filteredList1);
+                ProcessActions.getInstance().getPagesStack().push(currentPage);
                 error.outputSuccess(output, outputCommands, currentPage.getCurrentMoviesList(),
                         currentPage.getCurrentUser());
                 break;
@@ -85,6 +87,7 @@ public class ChangePageActions {
                 }
                 currentPage.setCurrentMoviesList(new ArrayList<>());
                 currentPage.setPageName("upgrades");
+                ProcessActions.getInstance().getPagesStack().push(currentPage);
                 break;
             default:
                 break;

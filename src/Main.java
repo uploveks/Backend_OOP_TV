@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Stack;
 
 public final class Main {
     private Main() {
@@ -25,7 +26,11 @@ public final class Main {
                 Input.class);
         Output output = new Output();
         CurrentPage currentPage = new CurrentPage("neautentificat", new ArrayList<>(), null, null);
-        ProcessActions processActions = new ProcessActions(currentPage, inputData, output);
+        ProcessActions processActions = ProcessActions.getInstance();
+        processActions.setInput(inputData);
+        processActions.setOutput(output);
+        processActions.setCurrentPage(currentPage);
+        processActions.setPagesStack(new Stack<>());
         processActions.readActions();
 
         BufferedWriter writer = new BufferedWriter(new FileWriter(args[1]));

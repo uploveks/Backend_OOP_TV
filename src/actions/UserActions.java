@@ -33,7 +33,6 @@ public final class UserActions {
      * @param currentPage
      * @param output
      * @param pageName
-     * @param outputCommands
      * @param error
      * I check if there is no user authenticated and the current
      * page is the homepage, then I change the current page name

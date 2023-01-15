@@ -99,6 +99,7 @@ public class ProcessActions {
                 }
             }
         }
+
         if (currentPage.getCurrentUser() != null) {
             if (currentPage.getCurrentUser().getCredentials().getAccountType().equals("premium")) {
                 if (currentPage.getCurrentUser().getLikedMovies().isEmpty()) {

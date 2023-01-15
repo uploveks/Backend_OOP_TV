@@ -26,6 +26,7 @@ public class BackActions {
         if (!pagesStack.isEmpty()) {
             CurrentPage backPage = pagesStack.pop();
             if (backPage.getPageName().equals("login") || backPage.getPageName().equals("register")) {
+                currentPage.setPageName(backPage.getPageName());
                 error.setError(output, outputCommands);
                 return;
             }

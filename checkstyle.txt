@@ -4,8 +4,9 @@ Starting audit...
 [ERROR] D:\POO-Laborator\Tema2\proiect1\.\src\BackActions.java:11:5: Class 'BackActions' looks like designed for extension (can be subclassed), but the method 'goBack' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'BackActions' final or making the method 'goBack' static/final/abstract/empty, or adding allowed annotation for the method. [DesignForExtension]
 [ERROR] D:\POO-Laborator\Tema2\proiect1\.\src\BackActions.java:11:5: Missing a Javadoc comment. [MissingJavadocMethod]
 [ERROR] D:\POO-Laborator\Tema2\proiect1\.\src\BackActions.java:28: Line is longer than 100 characters (found 102). [LineLength]
-[ERROR] D:\POO-Laborator\Tema2\proiect1\.\src\BackActions.java:38: Line is longer than 100 characters (found 168). [LineLength]
-[ERROR] D:\POO-Laborator\Tema2\proiect1\.\src\BackActions.java:40: Line is longer than 100 characters (found 132). [LineLength]
+[ERROR] D:\POO-Laborator\Tema2\proiect1\.\src\BackActions.java:39: Line is longer than 100 characters (found 168). [LineLength]
+[ERROR] D:\POO-Laborator\Tema2\proiect1\.\src\BackActions.java:41: Line is longer than 100 characters (found 132). [LineLength]
+[ERROR] D:\POO-Laborator\Tema2\proiect1\.\src\BuyActions.java:47:99: '+' should be on a new line. [OperatorWrap]
 [ERROR] D:\POO-Laborator\Tema2\proiect1\.\src\ChangePageActions.java:4:8: Unused import - inputdata.Action. [UnusedImports]
 [ERROR] D:\POO-Laborator\Tema2\proiect1\.\src\ChangePageActions.java:28: Line is longer than 100 characters (found 104). [LineLength]
 [ERROR] D:\POO-Laborator\Tema2\proiect1\.\src\DatabaseActions.java:14:5: Class 'DatabaseActions' looks like designed for extension (can be subclassed), but the method 'databaseAdd' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'DatabaseActions' final or making the method 'databaseAdd' static/final/abstract/empty, or adding allowed annotation for the method. [DesignForExtension]
@@ -42,4 +43,4 @@ Starting audit...
 [ERROR] D:\POO-Laborator\Tema2\proiect1\.\src\ProcessActions.java:132: Line is longer than 100 characters (found 123). [LineLength]
 [ERROR] D:\POO-Laborator\Tema2\proiect1\.\src\ProcessActions.java:134: Line is longer than 100 characters (found 108). [LineLength]
 Audit done.
-Checkstyle ends with 42 errors.
+Checkstyle ends with 43 errors.

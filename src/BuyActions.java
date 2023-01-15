@@ -44,7 +44,8 @@ public final class BuyActions {
             error.setError(output, outputCommands);
             return;
         }
-        currentPage.getCurrentUser().setTokensCount(Integer.parseInt(action.getCount()));
+        currentPage.getCurrentUser().setTokensCount(currentPage.getCurrentUser().getTokensCount() +
+                Integer.parseInt(action.getCount()));
         int previousBalance = Integer.parseInt(currentPage.getCurrentUser().
                 getCredentials().getBalance());
         int subtractBalance = previousBalance - Integer.parseInt(action.getCount());

@@ -8,7 +8,7 @@ import java.util.Stack;
 public class BackActions {
     public BackActions() {
     }
-    public void goBack(Stack<CurrentPage> pagesStack, final CurrentPage currentPage, final Input input, final Output output,
+    public void goBack(final Stack<CurrentPage> pagesStack, final CurrentPage currentPage, final Input input, final Output output,
                        final UserActions userActions,
                        final OutputCommands outputCommands, final Error error) {
         if (currentPage.getCurrentUser() == null) {

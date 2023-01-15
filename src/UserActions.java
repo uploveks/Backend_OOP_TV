@@ -45,7 +45,7 @@ public final class UserActions {
         }
         currentPage.setPageName(pageName);
         currentPage.setCurrentMoviesList(new ArrayList<>());
-        ProcessActions.getInstance().getPagesStack().push(currentPage);
+        ProcessActions.getInstance().getPagesStack().push(new CurrentPage(currentPage));
     }
 
 
@@ -74,7 +74,7 @@ public final class UserActions {
         }
         currentPage.setCurrentUser(checkUser(input, action.getCredentials()));
         error.outputSuccess(output, outputCommands, currentPage.getCurrentMoviesList(),
-                checkUser(input, action.getCredentials()));
+                currentPage.getCurrentUser());
     }
 
 
@@ -118,7 +118,7 @@ public final class UserActions {
     private User checkUser(final Input input, final Credentials credentials) {
         for (User user: input.getUsers()) {
             if (user.getCredentials().equals(credentials)) {
-                return new User(user);
+                return user;
             }
         }
         return null;

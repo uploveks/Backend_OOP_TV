@@ -17,6 +17,15 @@ public final class CurrentPage {
         this.seenMovieDetails = seenMovieDetails;
     }
 
+    public CurrentPage(final CurrentPage page) {
+        this.pageName = page.pageName;
+        this.currentMoviesList = page.currentMoviesList;
+        this.currentUser = page.currentUser;
+        this.seenMovieDetails = page.seenMovieDetails;
+    }
+
+
+
     public String getPageName() {
         return pageName;
     }

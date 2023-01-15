@@ -221,7 +221,7 @@ public final class Test {
     }
 
     private static void preTestCleanUp() {
-        TEST_OUT_FILE.delete();
+//        TEST_OUT_FILE.delete();
     }
 
     private static void printMessage(

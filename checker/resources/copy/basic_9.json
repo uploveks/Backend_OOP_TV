@@ -13,7 +13,7 @@
       "credentials": {
         "name": "Mihail",
         "password": "discret",
-        "accountType": "premium",
+        "accountType": "standard",
         "country": "China",
         "balance": "1337"
       }
@@ -22,7 +22,7 @@
       "credentials": {
         "name": "Iancu",
         "password": "corega",
-        "accountType": "premium",
+        "accountType": "standard",
         "country": "Japan",
         "balance": "50"
       }
@@ -31,7 +31,7 @@
       "credentials": {
         "name": "Geani",
         "password": "GNI",
-        "accountType": "premium",
+        "accountType": "standard",
         "country": "Russia",
         "balance": "50"
       }
@@ -40,7 +40,7 @@
       "credentials": {
         "name": "Ion",
         "password": "GLN",
-        "accountType": "premium",
+        "accountType": "standard",
         "country": "Brazil",
         "balance": "50"
       }
@@ -367,7 +367,7 @@
       "year": 1994,
       "duration": 141,
       "genres": [
-        "Comedy",
+        "Crime",
         "Mystery",
         "Drama"
       ],
@@ -403,6 +403,27 @@
         "Candice Hacquel",
         "Arlene Challoner"
       ]
+    },
+    {
+      "name": "Indiana Jones and the Temple of Doom",
+      "year": 2012,
+      "duration": 88,
+      "genres": [
+        "Drama",
+        "Comedy",
+        "Mystery"
+      ],
+      "countriesBanned": [
+        "Nigeria",
+        "Lithuania",
+        "Burkina Faso"
+      ],
+      "actors": [
+        "Samuel Murtell",
+        "Ansel Ryburn",
+        "Rickert Farmery",
+        "Ernst Malcher"
+      ]
     }
   ],
   "actions": [
@@ -414,61 +435,13 @@
       "type": "on page",
       "feature": "login",
       "credentials": {
-        "name": "Eduard",
-        "password": "secret"
+        "name": "Geani",
+        "password": "gni"
       }
     },
     {
       "type": "change page",
       "page": "movies"
-    },
-    {
-      "type": "on page",
-      "feature": "search",
-      "startsWith": "The"
-    },
-    {
-      "type": "change page",
-      "page": "see details",
-      "movie": "The Well-Digger's Daughter"
-    },
-    {
-      "type": "change page",
-      "page": "logout"
-    },
-    {
-      "type": "change page",
-      "page": "login"
-    },
-    {
-      "type": "on page",
-      "feature": "login",
-      "credentials": {
-        "name": "Mihail",
-        "password": "discret"
-      }
-    },
-    {
-      "type": "change page",
-      "page": "movies"
-    },
-    {
-      "type": "change page",
-      "page": "see details",
-      "movie": "My Sassy Girl"
-    },
-    {
-      "type": "on page",
-      "feature": "purchase"
-    },
-    {
-      "type": "on page",
-      "feature": "watch"
-    },
-    {
-      "type": "on page",
-      "feature": "rate",
-      "rate": 3
     },
     {
       "type": "change page",
@@ -488,12 +461,27 @@
     },
     {
       "type": "change page",
+      "page": "upgrades"
+    },
+    {
+      "type": "on page",
+      "page": "upgrades",
+      "feature": "buy tokens",
+      "count": "50"
+    },
+    {
+      "type": "change page",
       "page": "movies"
     },
     {
       "type": "change page",
       "page": "see details",
-      "movie": "Lord, Save Us from Your Followers"
+      "movie": "Jason's Lyric"
+    },
+    {
+      "type": "on page",
+      "feature": "subscribe",
+      "subscribedGenre": "Drama"
     },
     {
       "type": "on page",
@@ -504,65 +492,112 @@
       "feature": "watch"
     },
     {
-      "type": "on page",
-      "feature": "rate",
-      "rate": 5
-    },
-    {
-      "type": "change page",
-      "page": "movies"
+      "type": "back"
     },
     {
       "type": "change page",
       "page": "see details",
-      "movie": "My Sassy Girl"
+      "movie": "Indiana Jones and the Temple of Doom"
     },
     {
       "type": "on page",
-      "feature": "purchase"
+      "feature": "subscribe",
+      "subscribedGenre": "Comedy"
+    },
+    {
+      "type": "back"
+    },
+    {
+      "type": "change page",
+      "page": "see details",
+      "movie": "The Well-Digger's Daughter"
     },
     {
       "type": "on page",
-      "feature": "watch"
+      "feature": "subscribe",
+      "subscribedGenre": "Crime"
     },
     {
-      "type": "on page",
-      "feature": "rate",
-      "rate": 2
+      "type": "database",
+      "feature": "add",
+      "addedMovie": {
+        "name": "The Shawshank Redemption",
+        "year": 1994,
+        "duration": 166,
+        "genres": [
+          "Drama",
+          "Thriller"
+        ],
+        "countriesBanned": [
+          "Azerbaijan",
+          "China",
+          "India"
+        ],
+        "actors": [
+          "Tim Robbins",
+          "Morgan Freeman",
+          "Bob Gunton",
+          "William Sadler"
+        ]
+      }
+    },
+    {
+      "type": "database",
+      "feature": "add",
+      "addedMovie": {
+        "name": "The Dark Knight",
+        "year": 2008,
+        "duration": 166,
+        "genres": [
+          "Action",
+          "Mistery",
+          "Thriller"
+        ],
+        "countriesBanned": [
+          "Azerbaijan",
+          "China",
+          "India"
+        ],
+        "actors": [
+          "Morgan Freeman",
+          "Christian Bale",
+          "Heath Ledger",
+          "Michael Caine"
+        ]
+      }
+    },
+    {
+      "type": "database",
+      "feature": "add",
+      "addedMovie": {
+        "name": "Pulp Fictiom",
+        "year": 1994,
+        "duration": 166,
+        "genres": [
+          "Crime",
+          "Drama",
+          "Thriller"
+        ],
+        "countriesBanned": [
+          "Azerbaijan",
+          "China",
+          "India"
+        ],
+        "actors": [
+          "John Travolta",
+          "Uma Thurman",
+          "Samuel L. Jackson",
+          "Bruce Willis"
+        ]
+      }
+    },
+    {
+      "type": "change page",
+      "page": "movies"
     },
     {
       "type": "change page",
       "page": "logout"
-    },
-    {
-      "type": "change page",
-      "page": "login"
-    },
-    {
-      "type": "on page",
-      "feature": "login",
-      "credentials": {
-        "name": "Eduard",
-        "password": "secret"
-      }
-    },
-    {
-      "type": "change page",
-      "page": "movies"
-    },
-    {
-      "type": "on page",
-      "feature": "filter",
-      "filters": {
-        "sort": {
-          "rating": "increasing",
-          "duration": "decreasing"
-        }
-      }
-    },
-    {
-      "type": "change page",
-      "page": "login"
     }
   ]
 }

@@ -14,7 +14,8 @@
     "purchasedMovies" : [ ],
     "watchedMovies" : [ ],
     "likedMovies" : [ ],
-    "ratedMovies" : [ ]
+    "ratedMovies" : [ ],
+    "notifications" : [ ]
   }
 }, {
   "error" : "Error",
@@ -36,7 +37,8 @@
     "purchasedMovies" : [ ],
     "watchedMovies" : [ ],
     "likedMovies" : [ ],
-    "ratedMovies" : [ ]
+    "ratedMovies" : [ ],
+    "notifications" : [ ]
   }
 }, {
   "error" : null,
@@ -54,10 +56,49 @@
     "purchasedMovies" : [ ],
     "watchedMovies" : [ ],
     "likedMovies" : [ ],
-    "ratedMovies" : [ ]
+    "ratedMovies" : [ ],
+    "notifications" : [ ]
   }
 }, {
   "error" : "Error",
   "currentMoviesList" : [ ],
   "currentUser" : null
+}, {
+  "error" : "Error",
+  "currentMoviesList" : [ ],
+  "currentUser" : null
+}, {
+  "error" : "Error",
+  "currentMoviesList" : [ ],
+  "currentUser" : null
+}, {
+  "error" : "Error",
+  "currentMoviesList" : [ ],
+  "currentUser" : null
+}, {
+  "error" : "Error",
+  "currentMoviesList" : [ ],
+  "currentUser" : null
+}, {
+  "error" : null,
+  "currentMoviesList" : null,
+  "currentUser" : {
+    "credentials" : {
+      "name" : "Mihail",
+      "password" : "discret",
+      "accountType" : "premium",
+      "country" : "Russia",
+      "balance" : "1337"
+    },
+    "tokensCount" : 0,
+    "numFreePremiumMovies" : 15,
+    "purchasedMovies" : [ ],
+    "watchedMovies" : [ ],
+    "likedMovies" : [ ],
+    "ratedMovies" : [ ],
+    "notifications" : [ {
+      "movieName" : "No recommendation",
+      "message" : "Recommendation"
+    } ]
+  }
 } ]

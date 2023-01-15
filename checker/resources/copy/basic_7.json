@@ -374,7 +374,7 @@
       "countriesBanned": [
         "China",
         "South Africa",
-        "India"
+        "Zimbabwe"
       ],
       "actors": [
         "Fallon Sutcliff",
@@ -403,57 +403,63 @@
         "Candice Hacquel",
         "Arlene Challoner"
       ]
-    },
-    {
-      "name": "Indiana Jones and the Temple of Doom",
-      "year": 2012,
-      "duration": 88,
-      "genres": [
-        "Drama",
-        "Comedy",
-        "Mystery"
-      ],
-      "countriesBanned": [
-        "Nigeria",
-        "Lithuania",
-        "Burkina Faso"
-      ],
-      "actors": [
-        "Samuel Murtell",
-        "Ansel Ryburn",
-        "Rickert Farmery",
-        "Ernst Malcher"
-      ]
     }
   ],
   "actions": [
     {
       "type": "change page",
-      "page": "register"
+      "page": "login"
     },
     {
       "type": "on page",
-      "feature": "register",
+      "feature": "login",
       "credentials": {
-        "name": "Dorel",
-        "password": "ciucas",
-        "accountType": "standard",
-        "country": "Romania",
-        "balance": "3000"
+        "name": "Eduard",
+        "password": "secret"
       }
     },
     {
       "type": "change page",
-      "page": "upgrades"
+      "page": "movies"
     },
     {
       "type": "on page",
-      "feature": "buy tokens",
-      "count": "1000"
+      "page": "movies",
+      "feature": "search",
+      "startsWith": "The"
+    },
+    {
+      "type": "change page",
+      "page": "see details",
+      "movie": "The Well-Digger's Daughter"
     },
     {
       "type": "on page",
-      "feature": "buy premium account"
+      "feature": "purchase"
+    },
+    {
+      "type": "on page",
+      "feature": "watch"
+    },
+    {
+      "type": "on page",
+      "feature": "like"
+    },
+    {
+      "type": "change page",
+      "page": "logout"
+    },
+    {
+      "type": "change page",
+      "page": "login"
+    },
+    {
+      "type": "on page",
+      "feature": "login",
+      "credentials": {
+        "name": "Mihail",
+        "password": "discret"
+      }
     },
     {
       "type": "change page",
@@ -462,7 +468,74 @@
     {
       "type": "change page",
       "page": "see details",
-      "movie": "Take the Money and Run"
+      "movie": "My Sassy Girl"
+    },
+    {
+      "type": "on page",
+      "feature": "purchase"
+    },
+    {
+      "type": "on page",
+      "feature": "watch"
+    },
+    {
+      "type": "on page",
+      "feature": "like"
+    },
+    {
+      "type": "on page",
+      "feature": "rate",
+      "rate": 3
+    },
+    {
+      "type": "change page",
+      "page": "logout"
+    },
+    {
+      "type": "change page",
+      "page": "login"
+    },
+    {
+      "type": "on page",
+      "feature": "login",
+      "credentials": {
+        "name": "Iancu",
+        "password": "corega"
+      }
+    },
+    {
+      "type": "database",
+      "feature": "add",
+      "addedMovie": {
+        "name": "Penelope",
+        "year": 2008,
+        "duration": 166,
+        "genres": [
+          "Fantasy",
+          "Drama",
+          "Thriller"
+        ],
+        "countriesBanned": [
+          "Azerbaijan",
+          "China",
+          "India"
+        ],
+        "actors": [
+          "Elnore Neild",
+          "Gay Cobbing",
+          "Guntar Holton",
+          "Merry Troni"
+        ]
+      }
+    },
+    {
+      "type": "change page",
+      "page": "movies"
+    },
+    {
+      "type": "change page",
+      "page": "see details",
+      "movie": "Lord, Save Us from Your Followers"
     },
     {
       "type": "on page",
@@ -475,7 +548,7 @@
     {
       "type": "on page",
       "feature": "rate",
-      "rate": 2
+      "rate": 5
     },
     {
       "type": "change page",
@@ -501,350 +574,19 @@
     },
     {
       "type": "change page",
-      "page": "movies"
+      "page": "logout"
     },
     {
       "type": "change page",
-      "page": "see details",
-      "movie": "Penelope"
+      "page": "login"
     },
     {
       "type": "on page",
-      "feature": "purchase"
-    },
-    {
-      "type": "on page",
-      "feature": "watch"
-    },
-    {
-      "type": "on page",
-      "feature": "rate",
-      "rate": 2
-    },
-    {
-      "type": "change page",
-      "page": "movies"
-    },
-    {
-      "type": "change page",
-      "page": "see details",
-      "movie": "Kiwi!"
-    },
-    {
-      "type": "on page",
-      "feature": "purchase"
-    },
-    {
-      "type": "on page",
-      "feature": "watch"
-    },
-    {
-      "type": "on page",
-      "feature": "rate",
-      "rate": 2
-    },
-    {
-      "type": "change page",
-      "page": "movies"
-    },
-    {
-      "type": "change page",
-      "page": "see details",
-      "movie": "Little Foxes, The"
-    },
-    {
-      "type": "on page",
-      "feature": "purchase"
-    },
-    {
-      "type": "on page",
-      "feature": "watch"
-    },
-    {
-      "type": "on page",
-      "feature": "rate",
-      "rate": 2
-    },
-    {
-      "type": "change page",
-      "page": "movies"
-    },
-    {
-      "type": "change page",
-      "page": "see details",
-      "movie": "The Empty Hours"
-    },
-    {
-      "type": "on page",
-      "feature": "purchase"
-    },
-    {
-      "type": "on page",
-      "feature": "watch"
-    },
-    {
-      "type": "on page",
-      "feature": "rate",
-      "rate": 2
-    },
-    {
-      "type": "change page",
-      "page": "movies"
-    },
-    {
-      "type": "change page",
-      "page": "see details",
-      "movie": "Jason's Lyric"
-    },
-    {
-      "type": "on page",
-      "feature": "purchase"
-    },
-    {
-      "type": "on page",
-      "feature": "watch"
-    },
-    {
-      "type": "on page",
-      "feature": "rate",
-      "rate": 10
-    },
-    {
-      "type": "change page",
-      "page": "movies"
-    },
-    {
-      "type": "change page",
-      "page": "see details",
-      "movie": "Comet in Moominland"
-    },
-    {
-      "type": "on page",
-      "feature": "purchase"
-    },
-    {
-      "type": "on page",
-      "feature": "watch"
-    },
-    {
-      "type": "on page",
-      "feature": "rate",
-      "rate": 6
-    },
-    {
-      "type": "change page",
-      "page": "movies"
-    },
-    {
-      "type": "change page",
-      "page": "see details",
-      "movie": "Bag It"
-    },
-    {
-      "type": "on page",
-      "feature": "purchase"
-    },
-    {
-      "type": "on page",
-      "feature": "watch"
-    },
-    {
-      "type": "on page",
-      "feature": "rate",
-      "rate": 3
-    },
-    {
-      "type": "change page",
-      "page": "movies"
-    },
-    {
-      "type": "change page",
-      "page": "see details",
-      "movie": "Shaolin Temple (Shao Lin si)"
-    },
-    {
-      "type": "on page",
-      "feature": "purchase"
-    },
-    {
-      "type": "on page",
-      "feature": "watch"
-    },
-    {
-      "type": "on page",
-      "feature": "rate",
-      "rate": 5
-    },
-    {
-      "type": "change page",
-      "page": "movies"
-    },
-    {
-      "type": "change page",
-      "page": "see details",
-      "movie": "Belphecor: Curse of the Mummy (Belphégor - Le fantôme du Louvre)"
-    },
-    {
-      "type": "on page",
-      "feature": "purchase"
-    },
-    {
-      "type": "on page",
-      "feature": "watch"
-    },
-    {
-      "type": "on page",
-      "feature": "rate",
-      "rate": 3
-    },
-    {
-      "type": "change page",
-      "page": "movies"
-    },
-    {
-      "type": "change page",
-      "page": "see details",
-      "movie": "Endangered Species"
-    },
-    {
-      "type": "on page",
-      "feature": "purchase"
-    },
-    {
-      "type": "on page",
-      "feature": "watch"
-    },
-    {
-      "type": "on page",
-      "feature": "rate",
-      "rate": 2
-    },
-    {
-      "type": "change page",
-      "page": "movies"
-    },
-    {
-      "type": "change page",
-      "page": "see details",
-      "movie": "Celluloid Closet, The"
-    },
-    {
-      "type": "on page",
-      "feature": "purchase"
-    },
-    {
-      "type": "on page",
-      "feature": "watch"
-    },
-    {
-      "type": "on page",
-      "feature": "rate",
-      "rate": 1
-    },
-    {
-      "type": "change page",
-      "page": "movies"
-    },
-    {
-      "type": "change page",
-      "page": "see details",
-      "movie": "As You Like It"
-    },
-    {
-      "type": "on page",
-      "feature": "purchase"
-    },
-    {
-      "type": "on page",
-      "feature": "watch"
-    },
-    {
-      "type": "on page",
-      "feature": "rate",
-      "rate": 2
-    },
-    {
-      "type": "change page",
-      "page": "movies"
-    },
-    {
-      "type": "change page",
-      "page": "see details",
-      "movie": "The Well-Digger's Daughter"
-    },
-    {
-      "type": "on page",
-      "feature": "purchase"
-    },
-    {
-      "type": "on page",
-      "feature": "watch"
-    },
-    {
-      "type": "on page",
-      "feature": "rate",
-      "rate": 5
-    },
-    {
-      "type": "change page",
-      "page": "movies"
-    },
-    {
-      "type": "change page",
-      "page": "see details",
-      "movie": "Mistress"
-    },
-    {
-      "type": "on page",
-      "feature": "purchase"
-    },
-    {
-      "type": "on page",
-      "feature": "watch"
-    },
-    {
-      "type": "on page",
-      "feature": "rate",
-      "rate": 4
-    },
-    {
-      "type": "change page",
-      "page": "movies"
-    },
-    {
-      "type": "change page",
-      "page": "see details",
-      "movie": "Lord, Save Us from Your Followers"
-    },
-    {
-      "type": "on page",
-      "feature": "purchase"
-    },
-    {
-      "type": "on page",
-      "feature": "watch"
-    },
-    {
-      "type": "on page",
-      "feature": "rate",
-      "rate": 2
-    },
-    {
-      "type": "change page",
-      "page": "movies"
-    },
-    {
-      "type": "change page",
-      "page": "see details",
-      "movie": "Indiana Jones and the Temple of Doom"
-    },
-    {
-      "type": "on page",
-      "feature": "purchase"
-    },
-    {
-      "type": "on page",
-      "feature": "watch"
+      "feature": "login",
+      "credentials": {
+        "name": "Eduard",
+        "password": "secret"
+      }
     },
     {
       "type": "change page",
@@ -852,10 +594,12 @@
     },
     {
       "type": "on page",
+      "page": "movies",
       "feature": "filter",
       "filters": {
         "sort": {
-          "rating": "increasing"
+          "rating": "increasing",
+          "duration": "decreasing"
         }
       }
     }

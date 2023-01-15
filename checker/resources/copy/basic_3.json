@@ -22,7 +22,7 @@
   "movies": [
     {
       "name": "John Wick: Chapter 3 - Parabellum",
-      "year": 2019,
+      "year": "2019",
       "duration": 131,
       "genres": [
         "Action",
@@ -40,7 +40,7 @@
     },
     {
       "name": "Titanic",
-      "year": 2019,
+      "year": "2019",
       "duration": 131,
       "genres": [
         "Action",
@@ -69,9 +69,13 @@
         "name": "Ramsi",
         "password": "numiplacevelea",
         "accountType": "standard",
-        "country": "Romania",
+        "country": "Russia",
         "balance": "300"
       }
+    },
+    {
+      "type": "change page",
+      "page": "movies"
     },
     {
       "type": "on page",
@@ -85,28 +89,20 @@
     },
     {
       "type": "change page",
-      "page": "logout"
-    },
-    {
-      "type": "change page",
-      "page": "login"
+      "page": "see details",
+      "movie": "Titanic"
     },
     {
       "type": "on page",
-      "feature": "login",
-      "credentials": {
-        "name": "Mihail",
-        "password": "discret"
-      }
+      "feature": "purchase"
     },
     {
-      "type": "change page",
-      "page": "movies"
+      "type": "on page",
+      "feature": "watch"
     },
     {
-      "type": "change page",
-      "page": "see details",
-      "movie": "Titanic"
+      "type": "on page",
+      "feature": "like"
     }
   ]
 }

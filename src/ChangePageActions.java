@@ -45,6 +45,7 @@ public class ChangePageActions {
                 currentPage.setCurrentMoviesList(new ArrayList<>());
                 currentPage.setCurrentUser(null);
                 ProcessActions.getInstance().getPagesStack().clear();
+                ProcessActions.getInstance().getPagesStack().push(new CurrentPage(currentPage));
                 break;
             case "movies":
                 if (currentPage.getCurrentUser() == null) {
@@ -57,7 +58,7 @@ public class ChangePageActions {
                         Collections.singletonList(currentPage.getCurrentUser().getCredentials().
                                 getCountry()));
                 currentPage.setCurrentMoviesList(filteredList);
-                ProcessActions.getInstance().getPagesStack().push(currentPage);
+                ProcessActions.getInstance().getPagesStack().push(new CurrentPage(currentPage));
                 error.outputSuccess(output, outputCommands, currentPage.getCurrentMoviesList(),
                         currentPage.getCurrentUser());
                 break;
@@ -76,7 +77,7 @@ public class ChangePageActions {
                 currentPage.setPageName("see details");
                 currentPage.setSeenMovieDetails(filteredList1.get(0));
                 currentPage.setCurrentMoviesList(filteredList1);
-                ProcessActions.getInstance().getPagesStack().push(currentPage);
+                ProcessActions.getInstance().getPagesStack().push(new CurrentPage(currentPage));
                 error.outputSuccess(output, outputCommands, currentPage.getCurrentMoviesList(),
                         currentPage.getCurrentUser());
                 break;
@@ -87,7 +88,7 @@ public class ChangePageActions {
                 }
                 currentPage.setCurrentMoviesList(new ArrayList<>());
                 currentPage.setPageName("upgrades");
-                ProcessActions.getInstance().getPagesStack().push(currentPage);
+                ProcessActions.getInstance().getPagesStack().push(new CurrentPage(currentPage));
                 break;
             default:
                 break;

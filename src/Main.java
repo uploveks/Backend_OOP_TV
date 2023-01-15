@@ -31,6 +31,7 @@ public final class Main {
         processActions.setOutput(output);
         processActions.setCurrentPage(currentPage);
         processActions.setPagesStack(new Stack<>());
+        processActions.getPagesStack().push(new CurrentPage(currentPage));
         processActions.readActions();
 
         BufferedWriter writer = new BufferedWriter(new FileWriter(args[1]));

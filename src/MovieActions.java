@@ -117,12 +117,10 @@ public final class MovieActions {
             error.setError(output, outputCommands);
             return;
         }
-        if (currentPage.getCurrentUser().getWatchedMovies().contains(
+        if (!currentPage.getCurrentUser().getWatchedMovies().contains(
                 currentPage.getSeenMoviedetails())) {
-            error.setError(output, outputCommands);
-            return;
+            currentPage.getCurrentUser().getWatchedMovies().add(currentPage.getSeenMoviedetails());
         }
-        currentPage.getCurrentUser().getWatchedMovies().add(currentPage.getSeenMoviedetails());
         error.outputSuccess(output, outputCommands, currentPage.getCurrentMoviesList(),
                 currentPage.getCurrentUser());
     }
@@ -176,14 +174,22 @@ public final class MovieActions {
             return;
         }
         if (!(currentPage.getCurrentUser().getWatchedMovies().contains(currentPage.
-                getSeenMoviedetails()) && !currentPage.getCurrentUser().getRatedMovies().contains(
-                        currentPage.getSeenMoviedetails()) && action.getRate()
+                getSeenMoviedetails()) && action.getRate()
                         <= MagicNumbers.MAX_RATING && action.getRate() >= 1)) {
             error.setError(output, outputCommands);
             return;
         }
+
         double movieRating = currentPage.getSeenMoviedetails().getRating();
         int movieNumRatings = currentPage.getSeenMoviedetails().getNumRatings();
+        if (currentPage.getCurrentUser().getRatedMovies().contains(
+                currentPage.getSeenMoviedetails())) {
+            currentPage.getSeenMoviedetails().setRating((movieRating * movieNumRatings
+                    + action.getRate()) / (movieNumRatings + 1));
+            error.outputSuccess(output, outputCommands, currentPage.getCurrentMoviesList(),
+                    currentPage.getCurrentUser());
+            return;
+        }
         currentPage.getSeenMoviedetails().setRating((movieRating * movieNumRatings
                 + action.getRate()) / (movieNumRatings + 1));
         currentPage.getSeenMoviedetails().setNumRatings(movieNumRatings + 1);

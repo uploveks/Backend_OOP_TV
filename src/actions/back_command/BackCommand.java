@@ -1,5 +1,7 @@
-package actions;
+package actions.back_command;
 
+import actions.ChangePageActions;
+import actions.UserActions;
 import inputdata.Input;
 import outputdata.Error;
 import outputdata.Output;
@@ -8,12 +10,29 @@ import page.CurrentPage;
 
 import java.util.Stack;
 
-public class BackActions {
-    public BackActions() {
+class BackCommand implements Command {
+    private Stack<CurrentPage> pagesStack;
+    private CurrentPage currentPage;
+    private Input input;
+    private Output output;
+    private UserActions userActions;
+    private OutputCommands outputCommands;
+    private Error error;
+
+    public BackCommand(final Stack<CurrentPage> pagesStack, final CurrentPage currentPage, final Input input,
+                       final Output output,
+                       final UserActions userActions, final OutputCommands outputCommands, final Error error) {
+        this.pagesStack = pagesStack;
+        this.currentPage = currentPage;
+        this.input = input;
+        this.output = output;
+        this.userActions = userActions;
+        this.outputCommands = outputCommands;
+        this.error = error;
     }
-    public void goBack(final Stack<CurrentPage> pagesStack, final CurrentPage currentPage, final Input input, final Output output,
-                       final UserActions userActions,
-                       final OutputCommands outputCommands, final Error error) {
+
+    @Override
+    public void execute() {
         if (currentPage.getCurrentUser() == null) {
             error.setError(output);
             return;
@@ -46,3 +65,4 @@ public class BackActions {
         }
     }
 }
+

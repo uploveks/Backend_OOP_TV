@@ -15,11 +15,11 @@ public class BackActions {
                        final UserActions userActions,
                        final OutputCommands outputCommands, final Error error) {
         if (currentPage.getCurrentUser() == null) {
-            error.setError(output, outputCommands);
+            error.setError(output);
             return;
         }
         if (pagesStack.isEmpty()) {
-            error.setError(output, outputCommands);
+            error.setError(output);
             return;
         }
         if (currentPage.getPageName().equals("neautentificat")) {
@@ -30,7 +30,7 @@ public class BackActions {
             CurrentPage backPage = pagesStack.pop();
             if (backPage.getPageName().equals("login") || backPage.getPageName().equals("register")) {
                 currentPage.setPageName(backPage.getPageName());
-                error.setError(output, outputCommands);
+                error.setError(output);
                 return;
             }
             if (backPage.getPageName().equals("neautentificat")) {

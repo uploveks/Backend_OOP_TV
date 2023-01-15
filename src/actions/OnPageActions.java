@@ -43,7 +43,7 @@ public class OnPageActions {
                 break;
             case "search":
                 if (!currentPage.getPageName().equals("movies")) {
-                    error.setError(output, outputCommands);
+                    error.setError(output);
                     return;
                 }
                 FilterExecutable filterExecutableCountry = new FilterExecutable(
@@ -55,12 +55,12 @@ public class OnPageActions {
                 var filteredList = filterExecutable.executeFilter(filteredCountryList,
                         Collections.singletonList(action.getStartsWith()));
                 currentPage.setCurrentMoviesList(filteredList);
-                error.outputSuccess(output, outputCommands, filteredList, currentPage.
+                error.outputSuccess(output, filteredList, currentPage.
                         getCurrentUser());
                 break;
             case "filter":
                 if (!currentPage.getPageName().equals("movies")) {
-                    error.setError(output, outputCommands);
+                    error.setError(output);
                     return;
                 }
                 FilterExecutable filterExecutableCountry1 =
@@ -75,14 +75,14 @@ public class OnPageActions {
                 if (action.getFilters().getContains() != null) {
                     filterActions.containsInMovies(currentPage, action);
                 }
-                error.outputSuccess(output, outputCommands, currentPage.getCurrentMoviesList(),
+                error.outputSuccess(output, currentPage.getCurrentMoviesList(),
                         currentPage.getCurrentUser());
                 break;
             case "buy tokens":
-                buyActions.buyTokens(currentPage, output, action, outputCommands, error);
+                buyActions.buyTokens(currentPage, output, action, error);
                 break;
             case "buy premium account":
-                buyActions.buyPremiumAccount(currentPage, output, outputCommands, error);
+                buyActions.buyPremiumAccount(currentPage, output, error);
                 break;
             case "purchase":
                 movieActions.purchaseMovie(currentPage, action, error, outputCommands, output);

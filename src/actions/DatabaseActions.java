@@ -21,7 +21,7 @@ public class DatabaseActions {
         var filteredList = filterExecutable.executeFilter(input.getMovies(),
                 Collections.singletonList(action.getAddedMovie().getName()));
         if (!filteredList.isEmpty()) {
-            error.setError(output, outputCommands);
+            error.setError(output);
             return;
         }
         input.getMovies().add(action.getAddedMovie());
@@ -43,7 +43,7 @@ public class DatabaseActions {
         var filteredList = filterExecutable.executeFilter(input.getMovies(),
                 Collections.singletonList(action.getDeletedMovie()));
         if (filteredList.isEmpty()) {
-            error.setError(output, outputCommands);
+            error.setError(output);
             return;
         }
         Movie deletedMovie = filteredList.get(0);

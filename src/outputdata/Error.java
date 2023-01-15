@@ -28,14 +28,14 @@ public final class Error {
 
     /**
      * @param output
-     * @param outputCommands
-     * Sets the error as outputdata.Error, movie list as a new list and user as null
-     * and shows it in output.
+     *  Sets the error as outputdata.Error, movie list as a new list and user as null
+     *                       and shows it in output.
      */
-    public void setError(final Output output, final OutputCommands outputCommands) {
-        outputCommands.setError("Error");
-        outputCommands.setCurrentMoviesList(new ArrayList<>());
-        outputCommands.setCurrentUser(null);
+    public void setError(final Output output) {
+        OutputCommands outputCommands = new OutputCommands.Builder()
+                .error("Error")
+                .currentMoviesList(new ArrayList<>())
+                .build();
         output.addOutputCommands(outputCommands);
     }
 
@@ -43,16 +43,15 @@ public final class Error {
     /**
      * @param currentPage
      * @param output
-     * @param outputCommands
      * Sets the error as outputdata.Error, movie list as a new list and user as null
-     * and shows it in output and also sets the current page to homepage
-     * not authenticated.
+     *                       and shows it in output and also sets the current page to homepage
+     *                       not authenticated.
      */
-    public void errorAuthenticate(final CurrentPage currentPage, final Output output,
-                                  final OutputCommands outputCommands) {
-        outputCommands.setError("Error");
-        outputCommands.setCurrentMoviesList(new ArrayList<>());
-        outputCommands.setCurrentUser(null);
+    public void errorAuthenticate(final CurrentPage currentPage, final Output output) {
+        OutputCommands outputCommands = new OutputCommands.Builder()
+                .error("Error")
+                .currentMoviesList(new ArrayList<>())
+                .build();
         currentPage.setPageName("neautentificat");
         output.addOutputCommands(outputCommands);
     }
@@ -60,16 +59,15 @@ public final class Error {
 
     /**
      * @param output
-     * @param outputCommands
      * @param movieList
-     * @param user
-     * Sets error to null and shows in output the user and his movie list.
+     * @param user           Sets error to null and shows in output the user and his movie list.
      */
-    public void outputSuccess(final Output output, final OutputCommands outputCommands,
+    public void outputSuccess(final Output output,
                               final List<Movie> movieList, final User user) {
-        outputCommands.setError(null);
-        outputCommands.setCurrentMoviesList(movieList);
-        outputCommands.setCurrentUser(user);
+        OutputCommands outputCommands = new OutputCommands.Builder()
+                .currentMoviesList(movieList)
+                .currentUser(user)
+                .build();
         output.addOutputCommands(outputCommands);
     }
 }

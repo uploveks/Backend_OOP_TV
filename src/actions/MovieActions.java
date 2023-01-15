@@ -48,21 +48,21 @@ public final class MovieActions {
                                      final Movie movie, final OutputCommands outputCommands,
                                      final Error error) {
         if (currentPage.getCurrentUser().getPurchasedMovies().contains(movie)) {
-            error.setError(output, outputCommands);
+            error.setError(output);
         } else if (currentPage.getCurrentUser().getCredentials().getAccountType().equals(
                 "premium") && currentPage.getCurrentUser().getNumFreePremiumMovies() > 0) {
             currentPage.getCurrentUser().setNumFreePremiumMovies(currentPage.getCurrentUser().
                     getNumFreePremiumMovies() - 1);
             currentPage.getCurrentUser().getPurchasedMovies().add(movie);
-            error.outputSuccess(output, outputCommands, currentPage.getCurrentMoviesList(),
+            error.outputSuccess(output, currentPage.getCurrentMoviesList(),
                     currentPage.getCurrentUser());
         } else if (currentPage.getCurrentUser().getTokensCount() < 2) {
-            error.setError(output, outputCommands);
+            error.setError(output);
         } else {
             currentPage.getCurrentUser().setTokensCount(currentPage.getCurrentUser().
                     getTokensCount() - 2);
             currentPage.getCurrentUser().getPurchasedMovies().add(movie);
-            error.outputSuccess(output, outputCommands, currentPage.getCurrentMoviesList(),
+            error.outputSuccess(output, currentPage.getCurrentMoviesList(),
                     currentPage.getCurrentUser());
         }
     }
@@ -83,7 +83,7 @@ public final class MovieActions {
                               final OutputCommands outputCommands, final Output output) {
         if (!currentPage.getPageName().equals("upgrades")
                 && !currentPage.getPageName().equals("see details")) {
-            error.setError(output, outputCommands);
+            error.setError(output);
             return;
         }
         if (currentPage.getPageName().equals("see details")) {
@@ -113,19 +113,19 @@ public final class MovieActions {
     public void watchMovie(final CurrentPage currentPage, final Output output,
                            final OutputCommands outputCommands, final Error error) {
         if (!currentPage.getPageName().equals("see details")) {
-            error.setError(output, outputCommands);
+            error.setError(output);
             return;
         }
         if (!currentPage.getCurrentUser().getPurchasedMovies().contains(
                 currentPage.getSeenMoviedetails())) {
-            error.setError(output, outputCommands);
+            error.setError(output);
             return;
         }
         if (!currentPage.getCurrentUser().getWatchedMovies().contains(
                 currentPage.getSeenMoviedetails())) {
             currentPage.getCurrentUser().getWatchedMovies().add(currentPage.getSeenMoviedetails());
         }
-        error.outputSuccess(output, outputCommands, currentPage.getCurrentMoviesList(),
+        error.outputSuccess(output, currentPage.getCurrentMoviesList(),
                 currentPage.getCurrentUser());
     }
 
@@ -141,20 +141,20 @@ public final class MovieActions {
     public void likeMovie(final CurrentPage currentPage, final Output output, final Error error,
                           final OutputCommands outputCommands) {
         if (!currentPage.getPageName().equals("see details")) {
-            error.setError(output, outputCommands);
+            error.setError(output);
             return;
         }
         if (!currentPage.getCurrentUser().getWatchedMovies().contains(
                     currentPage.getSeenMoviedetails()) || currentPage.getCurrentUser().
                     getLikedMovies().contains(currentPage.getSeenMoviedetails())) {
-            error.setError(output, outputCommands);
+            error.setError(output);
             return;
         }
         currentPage.getSeenMoviedetails().setNumLikes(currentPage.getSeenMoviedetails().
                 getNumLikes() + 1);
         currentPage.getCurrentUser().getLikedMovies().add(currentPage.
                 getSeenMoviedetails());
-        error.outputSuccess(output, outputCommands, currentPage.getCurrentMoviesList(),
+        error.outputSuccess(output, currentPage.getCurrentMoviesList(),
                 currentPage.getCurrentUser());
     }
 
@@ -174,13 +174,13 @@ public final class MovieActions {
     public void rateMovie(final CurrentPage currentPage, final Action action, final Output output,
                           final Error error, final OutputCommands outputCommands) {
         if (!currentPage.getPageName().equals("see details")) {
-            error.setError(output, outputCommands);
+            error.setError(output);
             return;
         }
         if (!(currentPage.getCurrentUser().getWatchedMovies().contains(currentPage.
                 getSeenMoviedetails()) && action.getRate()
                         <= MagicNumbers.MAX_RATING && action.getRate() >= 1)) {
-            error.setError(output, outputCommands);
+            error.setError(output);
             return;
         }
 
@@ -190,7 +190,7 @@ public final class MovieActions {
                 currentPage.getSeenMoviedetails())) {
             currentPage.getSeenMoviedetails().setRating((movieRating * movieNumRatings
                     + action.getRate()) / (movieNumRatings + 1));
-            error.outputSuccess(output, outputCommands, currentPage.getCurrentMoviesList(),
+            error.outputSuccess(output, currentPage.getCurrentMoviesList(),
                     currentPage.getCurrentUser());
             return;
         }
@@ -198,22 +198,22 @@ public final class MovieActions {
                 + action.getRate()) / (movieNumRatings + 1));
         currentPage.getSeenMoviedetails().setNumRatings(movieNumRatings + 1);
         currentPage.getCurrentUser().getRatedMovies().add(currentPage.getSeenMoviedetails());
-        error.outputSuccess(output, outputCommands, currentPage.getCurrentMoviesList(),
+        error.outputSuccess(output, currentPage.getCurrentMoviesList(),
                 currentPage.getCurrentUser());
     }
 
     public void subscribe(final CurrentPage currentPage, final Action action, final Output output,
                           final Error error, final OutputCommands outputCommands) {
         if (!currentPage.getPageName().equals("see details")) {
-            error.setError(output, outputCommands);
+            error.setError(output);
             return;
         }
         if (!currentPage.getSeenMoviedetails().getGenres().contains(action.getSubscribedGenre())) {
-            error.setError(output, outputCommands);
+            error.setError(output);
             return;
         }
         if (currentPage.getCurrentUser().getSubscribedGenres().contains(action.getSubscribedGenre())) {
-            error.setError(output, outputCommands);
+            error.setError(output);
             return;
         }
         currentPage.getCurrentUser().getSubscribedGenres().add(action.getSubscribedGenre());

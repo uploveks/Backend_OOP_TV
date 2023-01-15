@@ -33,15 +33,15 @@ public class ChangePageActions {
         switch (pageName) {
             case "login":
                 userActions.loginRegisterChangePage(currentPage, output, "login",
-                        outputCommands, error);
+                        error);
                 break;
             case "register":
-                userActions.loginRegisterChangePage(currentPage, output, "register", outputCommands,
+                userActions.loginRegisterChangePage(currentPage, output, "register",
                         error);
                 break;
             case "logout":
                 if (currentPage.getCurrentUser() == null) {
-                    error.setError(output, outputCommands);
+                    error.setError(output);
                     return;
                 }
                 currentPage.setPageName("neautentificat");
@@ -52,7 +52,7 @@ public class ChangePageActions {
                 break;
             case "movies":
                 if (currentPage.getCurrentUser() == null) {
-                    error.setError(output, outputCommands);
+                    error.setError(output);
                     return;
                 }
                 currentPage.setPageName("movies");
@@ -62,31 +62,31 @@ public class ChangePageActions {
                                 getCountry()));
                 currentPage.setCurrentMoviesList(filteredList);
                 ProcessActions.getInstance().getPagesStack().push(new CurrentPage(currentPage));
-                error.outputSuccess(output, outputCommands, currentPage.getCurrentMoviesList(),
+                error.outputSuccess(output, currentPage.getCurrentMoviesList(),
                         currentPage.getCurrentUser());
                 break;
             case "see details":
                 if (!currentPage.getPageName().equals("movies")) {
-                    error.setError(output, outputCommands);
+                    error.setError(output);
                     return;
                 }
                 FilterExecutable filterExecutable1 = new FilterExecutable(new FilterByName());
                 var filteredList1 = filterExecutable1.executeFilter(currentPage.
                         getCurrentMoviesList(), Collections.singletonList(movieName));
                 if (filteredList1.size() == 0) {
-                    error.setError(output, outputCommands);
+                    error.setError(output);
                     return;
                 }
                 currentPage.setPageName("see details");
                 currentPage.setSeenMovieDetails(filteredList1.get(0));
                 currentPage.setCurrentMoviesList(filteredList1);
                 ProcessActions.getInstance().getPagesStack().push(new CurrentPage(currentPage));
-                error.outputSuccess(output, outputCommands, currentPage.getCurrentMoviesList(),
+                error.outputSuccess(output, currentPage.getCurrentMoviesList(),
                         currentPage.getCurrentUser());
                 break;
             case "upgrades":
                 if (currentPage.getCurrentUser() == null) {
-                    error.setError(output, outputCommands);
+                    error.setError(output);
                     return;
                 }
                 currentPage.setCurrentMoviesList(new ArrayList<>());

@@ -38,14 +38,14 @@ public final class BuyActions {
      *  the price from his balance and set the new balance.
      */
     public void buyTokens(final CurrentPage currentPage, final Output output, final Action action,
-                          final OutputCommands outputCommands, final Error error) {
+                          final Error error) {
         if (!currentPage.getPageName().equals("upgrades")) {
-            error.setError(output, outputCommands);
+            error.setError(output);
             return;
         }
         if (!(Integer.parseInt(currentPage.getCurrentUser().getCredentials().getBalance())
                     >= Integer.parseInt(action.getCount()))) {
-            error.setError(output, outputCommands);
+            error.setError(output);
             return;
         }
         currentPage.getCurrentUser().setTokensCount(currentPage.getCurrentUser().getTokensCount() +
@@ -60,7 +60,6 @@ public final class BuyActions {
     /**
      * @param currentPage
      * @param output
-     * @param outputCommands
      * @param error
      * Method that implements feature "buy premium account" only if the current page
      * if "upgrades" and if user has enough tokens to buy premium account.
@@ -68,13 +67,13 @@ public final class BuyActions {
      * initial number of tokens.
      */
     public void buyPremiumAccount(final CurrentPage currentPage, final Output output,
-                                  final OutputCommands outputCommands, final Error error) {
+                                  final Error error) {
         if (!currentPage.getPageName().equals("upgrades")) {
-            error.setError(output, outputCommands);
+            error.setError(output);
             return;
         }
         if (!(currentPage.getCurrentUser().getTokensCount() > MagicNumbers.PREMIUM_ACCOUNT_PRICE)) {
-            error.setError(output, outputCommands);
+            error.setError(output);
             return;
         }
         currentPage.getCurrentUser().getCredentials().setAccountType("premium");

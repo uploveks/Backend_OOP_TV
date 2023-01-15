@@ -70,7 +70,7 @@ public class ProcessActions {
      */
     public void readActions() {
         currentPage = new CurrentPage("neautentificat", new ArrayList<>(), null, null);
-        OutputCommands outputCommands = new OutputCommands();
+        OutputCommands outputCommands = new OutputCommands.Builder().build();
         BuyActions buyActions = BuyActions.getInstance();
         Error error = Error.getInstance();
         UserActions userActions =  UserActions.getInstance();
@@ -104,7 +104,7 @@ public class ProcessActions {
                 if (currentPage.getCurrentUser().getLikedMovies().isEmpty()) {
                     Notifications recommendation = new Notifications("No recommendation", "Recommendation");
                     currentPage.getCurrentUser().getNotifications().add(recommendation);
-                    error.outputSuccess(output, outputCommands, null, currentPage.getCurrentUser());
+                    error.outputSuccess(output, null, currentPage.getCurrentUser());
                 } else {
                     Map<String, Integer> genreLikes = new HashMap<>();
                     for (Movie movie : currentPage.getCurrentUser().getLikedMovies()) {
@@ -135,7 +135,7 @@ public class ProcessActions {
                             Movie recommendedMovie = likedGenreMovies.get(0);
                             Notifications recommendation = new Notifications(recommendedMovie.getName(), "Recommendation");
                             currentPage.getCurrentUser().getNotifications().add(recommendation);
-                            error.outputSuccess(output, outputCommands, null, currentPage.getCurrentUser());
+                            error.outputSuccess(output, null, currentPage.getCurrentUser());
                             break;
                         }
                     }

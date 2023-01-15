@@ -40,11 +40,11 @@ public final class UserActions {
      * and set movie list to a new list.
      */
     public void loginRegisterChangePage(final CurrentPage currentPage, final Output output,
-                                        final String pageName, final OutputCommands outputCommands,
+                                        final String pageName,
                                         final Error error) {
         if (!currentPage.getPageName().equals("neautentificat")
                 || currentPage.getCurrentUser() != null) {
-            error.setError(output, outputCommands);
+            error.setError(output);
             return;
         }
         currentPage.setPageName(pageName);
@@ -69,15 +69,15 @@ public final class UserActions {
                             final Error error) {
         if (!currentPage.getPageName().equals("login")
                 && currentPage.getCurrentUser() != null) {
-            error.errorAuthenticate(currentPage, output, outputCommands);
+            error.errorAuthenticate(currentPage, output);
             return;
         }
         if (checkUser(input, action.getCredentials()) == null) {
-            error.errorAuthenticate(currentPage, output, outputCommands);
+            error.errorAuthenticate(currentPage, output);
             return;
         }
         currentPage.setCurrentUser(checkUser(input, action.getCredentials()));
-        error.outputSuccess(output, outputCommands, currentPage.getCurrentMoviesList(),
+        error.outputSuccess(output, currentPage.getCurrentMoviesList(),
                 currentPage.getCurrentUser());
     }
 
@@ -98,17 +98,17 @@ public final class UserActions {
                                final OutputCommands outputCommands, final Error error) {
         if (!currentPage.getPageName().equals("register")
                 || currentPage.getCurrentUser() != null) {
-            error.errorAuthenticate(currentPage, output, outputCommands);
+            error.errorAuthenticate(currentPage, output);
             return;
         }
         if (checkUser(input, action.getCredentials()) != null) {
-            error.errorAuthenticate(currentPage, output, outputCommands);
+            error.errorAuthenticate(currentPage, output);
             return;
         }
         User newUser = new User(action.getCredentials());
         currentPage.setCurrentUser(newUser);
         input.getUsers().add(newUser);
-        error.outputSuccess(output, outputCommands, new ArrayList<>(), newUser);
+        error.outputSuccess(output, new ArrayList<>(), newUser);
     }
 
 

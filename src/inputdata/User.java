@@ -1,5 +1,6 @@
 package inputdata;
 
+import actions.observer.Observer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import utils.MagicNumbers;
 
@@ -8,29 +9,47 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class User {
+public class User extends Observer {
     private Credentials credentials;
     private int tokensCount;
     private int numFreePremiumMovies = MagicNumbers.NUMBER_FREE_PREMIUM_MOVIES;
-    private List<Movie> purchasedMovies = new ArrayList();
-    private List<Movie> watchedMovies = new ArrayList();
-    private List<Movie> likedMovies = new ArrayList();
-    private List<Movie> ratedMovies = new ArrayList();
+    private List<Movie> purchasedMovies = new ArrayList<>();
+    private List<Movie> watchedMovies = new ArrayList<>();
+    private List<Movie> likedMovies = new ArrayList<>();
+    private List<Movie> ratedMovies = new ArrayList<>();
     private Queue<Notifications> notifications = new LinkedList<>();
     @JsonIgnore
     private List<String> subscribedGenres = new ArrayList<>();
+    @JsonIgnore
+    private final List<Observer> observers = new ArrayList<>();
 
+    public void addObserver(Observer observer) {
+        this.observers.add(observer);
+    }
+    public void removeObserver(Observer observer) {
+        this.observers.remove(observer);
+    }
+    public void notifyObservers(Notifications notification) {
+        for (Observer observer : observers) {
+            observer.update(notification);
+        }
+    }
+    public void update(Notifications notification) {
+        // code to update the user based on the notification
+        if (!this.notifications.contains(notification)) {
+            this.notifications.add(notification);
+        }
+    }
     public User() {
     }
 
     public User(final Credentials credentials) {
         this.credentials = credentials;
         this.tokensCount = 0;
-        this.numFreePremiumMovies = MagicNumbers.NUMBER_FREE_PREMIUM_MOVIES;
-        this.purchasedMovies = new ArrayList();
-        this.watchedMovies = new ArrayList();
-        this.likedMovies = new ArrayList();
-        this.ratedMovies = new ArrayList();
+        this.purchasedMovies = new ArrayList<>();
+        this.watchedMovies = new ArrayList<>();
+        this.likedMovies = new ArrayList<>();
+        this.ratedMovies = new ArrayList<>();
         this.notifications = new LinkedList<>();
     }
 

@@ -1,9 +1,13 @@
+package actions;
+
 import inputdata.Action;
 import inputdata.Credentials;
 import inputdata.Input;
 import inputdata.User;
+import outputdata.Error;
 import outputdata.Output;
 import outputdata.OutputCommands;
+import page.CurrentPage;
 
 import java.util.ArrayList;
 

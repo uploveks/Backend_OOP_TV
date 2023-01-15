@@ -1,7 +1,8 @@
+package outputdata;
+
 import inputdata.Movie;
 import inputdata.User;
-import outputdata.Output;
-import outputdata.OutputCommands;
+import page.CurrentPage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public final class Error {
     /**
      * @param output
      * @param outputCommands
-     * Sets the error as Error, movie list as a new list and user as null
+     * Sets the error as outputdata.Error, movie list as a new list and user as null
      * and shows it in output.
      */
     public void setError(final Output output, final OutputCommands outputCommands) {
@@ -43,7 +44,7 @@ public final class Error {
      * @param currentPage
      * @param output
      * @param outputCommands
-     * Sets the error as Error, movie list as a new list and user as null
+     * Sets the error as outputdata.Error, movie list as a new list and user as null
      * and shows it in output and also sets the current page to homepage
      * not authenticated.
      */

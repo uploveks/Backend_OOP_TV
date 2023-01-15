@@ -1,10 +1,13 @@
+package actions;
+
 import filter.FilterByCountry;
 import filter.FilterByName;
 import filter.FilterExecutable;
-import inputdata.Action;
 import inputdata.Input;
+import outputdata.Error;
 import outputdata.Output;
 import outputdata.OutputCommands;
+import page.CurrentPage;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,6 +1,10 @@
+package actions;
+
 import inputdata.Action;
+import outputdata.Error;
 import outputdata.Output;
 import outputdata.OutputCommands;
+import page.CurrentPage;
 import utils.MagicNumbers;
 
 public final class BuyActions {

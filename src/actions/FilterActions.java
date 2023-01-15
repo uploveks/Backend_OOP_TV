@@ -1,3 +1,5 @@
+package actions;
+
 import filter.FilterByActors;
 import filter.FilterByGenre;
 import filter.FilterExecutable;
@@ -6,6 +8,7 @@ import filter.SortByDurationAndRating;
 import filter.SortByRatings;
 import filter.SortExecutable;
 import inputdata.Action;
+import page.CurrentPage;
 
 public final class FilterActions {
     private static FilterActions instance;

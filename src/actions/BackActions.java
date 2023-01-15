@@ -1,7 +1,10 @@
-import inputdata.Action;
+package actions;
+
 import inputdata.Input;
+import outputdata.Error;
 import outputdata.Output;
 import outputdata.OutputCommands;
+import page.CurrentPage;
 
 import java.util.Stack;
 

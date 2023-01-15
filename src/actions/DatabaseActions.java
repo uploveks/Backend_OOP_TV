@@ -1,3 +1,5 @@
+package actions;
+
 import filter.FilterByName;
 import filter.FilterExecutable;
 import inputdata.Action;
@@ -5,6 +7,7 @@ import inputdata.Input;
 import inputdata.Movie;
 import inputdata.Notifications;
 import inputdata.User;
+import outputdata.Error;
 import outputdata.Output;
 import outputdata.OutputCommands;
 
@@ -26,7 +29,8 @@ public class DatabaseActions {
             if (!action.getAddedMovie().getCountriesBanned().contains(user.getCredentials().getCountry()) &&
                 user.getSubscribedGenres().stream().anyMatch(action.getAddedMovie().getGenres()::contains)) {
                 Notifications userNotification = new Notifications(action.getAddedMovie().getName(), "ADD");
-                user.getNotifications().add(userNotification);
+                user.addObserver(user);
+                user.notifyObservers(userNotification);
             }
         }
     }
@@ -52,7 +56,9 @@ public class DatabaseActions {
                     user.setTokensCount(user.getTokensCount() + 2);
                 }
                 Notifications userNotification = new Notifications(deletedMovie.getName(), "DELETE");
-                user.getNotifications().add(userNotification);
+                user.addObserver(user);
+                user.notifyObservers(userNotification);
+
                 user.getRatedMovies().remove(deletedMovie);
                 user.getPurchasedMovies().remove(deletedMovie);
                 user.getWatchedMovies().remove(deletedMovie);

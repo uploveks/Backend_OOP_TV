@@ -1,9 +1,13 @@
+package actions;
+
 import filter.FilterByName;
 import filter.FilterExecutable;
 import inputdata.Action;
 import inputdata.Movie;
+import outputdata.Error;
 import outputdata.Output;
 import outputdata.OutputCommands;
+import page.CurrentPage;
 import utils.MagicNumbers;
 
 
@@ -104,7 +108,7 @@ public final class MovieActions {
      * @param error
      * I check if current page is see details, if the movie was purchased and
      * not watched yet. I add to user's watched movie the movie that he saw details for
-     * (saved in an object in CurrentPage class) and then print the output.
+     * (saved in an object in page.CurrentPage class) and then print the output.
      */
     public void watchMovie(final CurrentPage currentPage, final Output output,
                            final OutputCommands outputCommands, final Error error) {

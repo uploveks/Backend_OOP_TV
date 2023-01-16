@@ -24,7 +24,8 @@ public final class Action {
     public Action(final String type, final String page, final Credentials credentials,
                   final String feature, final String startsWith, final Filter filters,
                   final String objectType, final List<Movie> movies, final String count,
-                  final String movie, final Integer rate, final String deletedMovie, final Movie addedMovie, final String subscribedGenre) {
+                  final String movie, final Integer rate, final String deletedMovie,
+                  final Movie addedMovie, final String subscribedGenre) {
         this.type = type;
         this.page = page;
         this.credentials = credentials;

@@ -4,7 +4,7 @@ import inputdata.Action;
 import inputdata.Credentials;
 import inputdata.Input;
 import inputdata.User;
-import outputdata.Error;
+import outputdata.ErrorOutput;
 import outputdata.Output;
 import outputdata.OutputCommands;
 import page.CurrentPage;
@@ -33,17 +33,17 @@ public final class UserActions {
      * @param currentPage
      * @param output
      * @param pageName
-     * @param error
+     * @param errorOutput
      * I check if there is no user authenticated and the current
      * page is the homepage, then I change the current page name
      * and set movie list to a new list.
      */
     public void loginRegisterChangePage(final CurrentPage currentPage, final Output output,
                                         final String pageName,
-                                        final Error error) {
+                                        final ErrorOutput errorOutput) {
         if (!currentPage.getPageName().equals("neautentificat")
                 || currentPage.getCurrentUser() != null) {
-            error.setError(output);
+            errorOutput.setError(output);
             return;
         }
         currentPage.setPageName(pageName);
@@ -58,25 +58,25 @@ public final class UserActions {
      * @param output
      * @param action
      * @param outputCommands
-     * @param error
+     * @param errorOutput
      * I check if the current page is login and the user is not
      * authenticated, then I check if the login and password given
      * by him is correct, I set the current user.
      */
     public void loginOnPage(final CurrentPage currentPage, final Input input, final Output output,
                             final Action action, final OutputCommands outputCommands,
-                            final Error error) {
+                            final ErrorOutput errorOutput) {
         if (!currentPage.getPageName().equals("login")
                 && currentPage.getCurrentUser() != null) {
-            error.errorAuthenticate(currentPage, output);
+            errorOutput.errorAuthenticate(currentPage, output);
             return;
         }
         if (checkUser(input, action.getCredentials()) == null) {
-            error.errorAuthenticate(currentPage, output);
+            errorOutput.errorAuthenticate(currentPage, output);
             return;
         }
         currentPage.setCurrentUser(checkUser(input, action.getCredentials()));
-        error.outputSuccess(output, currentPage.getCurrentMoviesList(),
+        errorOutput.outputSuccess(output, currentPage.getCurrentMoviesList(),
                 currentPage.getCurrentUser());
     }
 
@@ -87,27 +87,27 @@ public final class UserActions {
      * @param output
      * @param action
      * @param outputCommands
-     * @param error
+     * @param errorOutput
      * I check if the current page is register and there is no user
      * authenticated and also if there is no such user in the database.
      * I create a new user with given credentials and add him to the input database.
      */
     public void registerOnPage(final CurrentPage currentPage, final Input input,
                                final Output output, final Action action,
-                               final OutputCommands outputCommands, final Error error) {
+                               final OutputCommands outputCommands, final ErrorOutput errorOutput) {
         if (!currentPage.getPageName().equals("register")
                 || currentPage.getCurrentUser() != null) {
-            error.errorAuthenticate(currentPage, output);
+            errorOutput.errorAuthenticate(currentPage, output);
             return;
         }
         if (checkUser(input, action.getCredentials()) != null) {
-            error.errorAuthenticate(currentPage, output);
+            errorOutput.errorAuthenticate(currentPage, output);
             return;
         }
         User newUser = new User(action.getCredentials());
         currentPage.setCurrentUser(newUser);
         input.getUsers().add(newUser);
-        error.outputSuccess(output, new ArrayList<>(), newUser);
+        errorOutput.outputSuccess(output, new ArrayList<>(), newUser);
     }
 
 

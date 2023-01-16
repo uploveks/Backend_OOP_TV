@@ -5,7 +5,7 @@ import filter.FilterByName;
 import filter.FilterExecutable;
 import inputdata.Action;
 import inputdata.Input;
-import outputdata.Error;
+import outputdata.ErrorOutput;
 import outputdata.Output;
 import outputdata.OutputCommands;
 import page.CurrentPage;
@@ -22,7 +22,7 @@ public class OnPageActions {
     /**
      * @param action
      * @param outputCommands
-     * @param error
+     * @param errorOutput
      * @param buyActions
      * @param userActions
      * @param movieActions
@@ -30,20 +30,17 @@ public class OnPageActions {
      */
     public void onPage(final CurrentPage currentPage, final Input input, final Output output,
                        final Action action, final OutputCommands outputCommands,
-                       final Error error, final BuyActions buyActions,
+                       final ErrorOutput errorOutput, final BuyActions buyActions,
                        final UserActions userActions, final MovieActions movieActions,
                        final FilterActions filterActions) {
         switch (action.getFeature()) {
-            case "login":
-                userActions.loginOnPage(currentPage, input, output, action, outputCommands, error);
-                break;
-            case "register":
-                userActions.registerOnPage(currentPage, input, output, action, outputCommands,
-                        error);
-                break;
-            case "search":
+            case "login" -> userActions.loginOnPage(currentPage, input, output, action, outputCommands,
+                    errorOutput);
+            case "register" -> userActions.registerOnPage(currentPage, input, output, action, outputCommands,
+                    errorOutput);
+            case "search" -> {
                 if (!currentPage.getPageName().equals("movies")) {
-                    error.setError(output);
+                    errorOutput.setError(output);
                     return;
                 }
                 FilterExecutable filterExecutableCountry = new FilterExecutable(
@@ -55,12 +52,12 @@ public class OnPageActions {
                 var filteredList = filterExecutable.executeFilter(filteredCountryList,
                         Collections.singletonList(action.getStartsWith()));
                 currentPage.setCurrentMoviesList(filteredList);
-                error.outputSuccess(output, filteredList, currentPage.
+                errorOutput.outputSuccess(output, filteredList, currentPage.
                         getCurrentUser());
-                break;
-            case "filter":
+            }
+            case "filter" -> {
                 if (!currentPage.getPageName().equals("movies")) {
-                    error.setError(output);
+                    errorOutput.setError(output);
                     return;
                 }
                 FilterExecutable filterExecutableCountry1 =
@@ -75,32 +72,18 @@ public class OnPageActions {
                 if (action.getFilters().getContains() != null) {
                     filterActions.containsInMovies(currentPage, action);
                 }
-                error.outputSuccess(output, currentPage.getCurrentMoviesList(),
+                errorOutput.outputSuccess(output, currentPage.getCurrentMoviesList(),
                         currentPage.getCurrentUser());
-                break;
-            case "buy tokens":
-                buyActions.buyTokens(currentPage, output, action, error);
-                break;
-            case "buy premium account":
-                buyActions.buyPremiumAccount(currentPage, output, error);
-                break;
-            case "purchase":
-                movieActions.purchaseMovie(currentPage, action, error, outputCommands, output);
-                break;
-            case "watch":
-                movieActions.watchMovie(currentPage, output, outputCommands, error);
-                break;
-            case "like":
-                movieActions.likeMovie(currentPage, output, error, outputCommands);
-                break;
-            case "rate":
-                movieActions.rateMovie(currentPage, action, output, error, outputCommands);
-                break;
-            case "subscribe":
-                movieActions.subscribe(currentPage, action, output, error, outputCommands);
-                break;
-            default:
-                break;
+            }
+            case "buy tokens" -> buyActions.buyTokens(currentPage, output, action, errorOutput);
+            case "buy premium account" -> buyActions.buyPremiumAccount(currentPage, output, errorOutput);
+            case "purchase" -> movieActions.purchaseMovie(currentPage, action, errorOutput, output);
+            case "watch" -> movieActions.watchMovie(currentPage, output, errorOutput);
+            case "like" -> movieActions.likeMovie(currentPage, output, errorOutput);
+            case "rate" -> movieActions.rateMovie(currentPage, action, output, errorOutput);
+            case "subscribe" -> movieActions.subscribe(currentPage, action, output, errorOutput);
+            default -> {
+            }
         }
     }
 }

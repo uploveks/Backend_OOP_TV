@@ -5,12 +5,12 @@ import inputdata.User;
 
 import java.util.List;
 
-public class OutputCommands {
+public final class OutputCommands {
     private String error;
     private List<Movie> currentMoviesList;
     private User currentUser;
 
-    private OutputCommands(Builder builder) {
+    private OutputCommands(final Builder builder) {
         this.error = builder.error;
         this.currentMoviesList = builder.currentMoviesList;
         this.currentUser = builder.currentUser;
@@ -21,23 +21,39 @@ public class OutputCommands {
         private List<Movie> currentMoviesList;
         private User currentUser;
 
-        public Builder() {}
+        public Builder() {
+        }
 
-        public Builder error(String error) {
+        /**
+         * @param error
+         * @return
+         */
+        public Builder error(final String error) {
             this.error = error;
             return this;
         }
 
-        public Builder currentMoviesList(List<Movie> currentMoviesList) {
+        /**
+         * @param currentMoviesList
+         * @return
+         */
+        public Builder currentMoviesList(final List<Movie> currentMoviesList) {
             this.currentMoviesList = currentMoviesList;
             return this;
         }
 
-        public Builder currentUser(User currentUser) {
+        /**
+         * @param currentUser
+         * @return
+         */
+        public Builder currentUser(final User currentUser) {
             this.currentUser = currentUser;
             return this;
         }
 
+        /**
+         * @return
+         */
         public OutputCommands build() {
             return new OutputCommands(this);
         }

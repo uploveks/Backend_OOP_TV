@@ -1,35 +1,26 @@
 package actions;
 
 import actions.back_command.BackActions;
-import filter.FilterByCountry;
-import filter.FilterExecutable;
+import actions.change_page_state.ChangePageActions;
 import inputdata.Action;
 import inputdata.Input;
-import inputdata.Movie;
-import inputdata.Notifications;
-import outputdata.Error;
+import outputdata.ErrorOutput;
 import outputdata.Output;
 import outputdata.OutputCommands;
 import page.CurrentPage;
 import recommendation.Recommendation;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Stack;
 
-public class ProcessActions {
+public final class ProcessActions {
     private CurrentPage currentPage;
     private Input input;
     private Output output;
     private Stack<CurrentPage> pagesStack;
     private static ProcessActions instance = new ProcessActions();
 
-    private ProcessActions(){
-
+    private ProcessActions() {
     }
     public static ProcessActions getInstance(){
         return instance;
@@ -39,7 +30,7 @@ public class ProcessActions {
         return currentPage;
     }
 
-    public void setCurrentPage(CurrentPage currentPage) {
+    public void setCurrentPage(final CurrentPage currentPage) {
         this.currentPage = currentPage;
     }
 
@@ -47,7 +38,7 @@ public class ProcessActions {
         return input;
     }
 
-    public void setInput(Input input) {
+    public void setInput(final Input input) {
         this.input = input;
     }
 
@@ -55,7 +46,7 @@ public class ProcessActions {
         return output;
     }
 
-    public void setOutput(Output output) {
+    public void setOutput(final Output output) {
         this.output = output;
     }
 
@@ -63,7 +54,7 @@ public class ProcessActions {
         return pagesStack;
     }
 
-    public void setPagesStack(Stack<CurrentPage> pagesStack) {
+    public void setPagesStack(final Stack<CurrentPage> pagesStack) {
         this.pagesStack = pagesStack;
     }
 
@@ -74,7 +65,7 @@ public class ProcessActions {
         currentPage = new CurrentPage("neautentificat", new ArrayList<>(), null, null);
         OutputCommands outputCommands = new OutputCommands.Builder().build();
         BuyActions buyActions = BuyActions.getInstance();
-        Error error = Error.getInstance();
+        ErrorOutput errorOutput = ErrorOutput.getInstance();
         UserActions userActions =  UserActions.getInstance();
         ChangePageActions changePageActions = new ChangePageActions();
         OnPageActions onPageActions = new OnPageActions();
@@ -84,26 +75,26 @@ public class ProcessActions {
         FilterActions filterActions = FilterActions.getInstance();
         for (Action action: input.getActions()) {
             if (action.getType().equals("change page")) {
-                changePageActions.changePage(currentPage, input, output, action.getPage(), action.getMovie(), userActions,
-                        outputCommands, error);
+                changePageActions.changePage(currentPage, input, output, action.getPage(),
+                        action.getMovie(), userActions, errorOutput);
             } else if (action.getType().equals("on page")) {
-                onPageActions.onPage(currentPage, input, output, action, outputCommands, error,
-                        buyActions, userActions, movieActions, filterActions);
+                onPageActions.onPage(currentPage, input, output, action, outputCommands,
+                        errorOutput, buyActions, userActions, movieActions, filterActions);
             } else if (action.getType().equals("back")) {
-                backActions.goBack(pagesStack,currentPage, input, output, userActions,
-                        outputCommands, error);
+                backActions.goBack(pagesStack, currentPage, input, output, userActions,
+                        errorOutput);
             } else if (action.getType().equals("database")) {
                 if (action.getFeature().equals("add")) {
-                    databaseActions.databaseAdd(input, output, outputCommands, action, error);
+                    databaseActions.databaseAdd(input, output, action, errorOutput);
                 }
                 if (action.getFeature().equals("delete")) {
-                    databaseActions.databaseDelete(input, output, outputCommands, action, error);
+                    databaseActions.databaseDelete(input, output, action, errorOutput);
                 }
             }
         }
 
         if (currentPage.getCurrentUser() != null) {
-            new Recommendation().recommendMovie(currentPage, input, output, error);
+            new Recommendation().recommendMovie(currentPage, input, output, errorOutput);
         }
     }
 

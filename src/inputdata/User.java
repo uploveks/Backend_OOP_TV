@@ -23,19 +23,26 @@ public class User extends Observer {
     @JsonIgnore
     private final List<Observer> observers = new ArrayList<>();
 
-    public void addObserver(Observer observer) {
+    /**
+     * @param observer
+     */
+    public void addObserver(final Observer observer) {
         this.observers.add(observer);
     }
-    public void removeObserver(Observer observer) {
-        this.observers.remove(observer);
-    }
-    public void notifyObservers(Notifications notification) {
+
+    /**
+     * @param notification
+     */
+    public void notifyObservers(final Notifications notification) {
         for (Observer observer : observers) {
             observer.update(notification);
         }
     }
-    public void update(Notifications notification) {
-        // code to update the user based on the notification
+
+    /**
+     * @param notification
+     */
+    public void update(final Notifications notification) {
         if (!this.notifications.contains(notification)) {
             this.notifications.add(notification);
         }
@@ -191,19 +198,25 @@ public class User extends Observer {
         this.ratedMovies = ratedMovies;
     }
 
+    /**
+     * @return
+     */
     public Queue<Notifications> getNotifications() {
         return notifications;
     }
 
+    /**
+     * @param notifications
+     */
     public void setNotifications(final Queue<Notifications> notifications) {
         this.notifications = notifications;
     }
 
+    /**
+     * @return
+     */
     public List<String> getSubscribedGenres() {
         return subscribedGenres;
     }
 
-    public void setSubscribedGenres(final List<String> subscribedGenres) {
-        this.subscribedGenres = subscribedGenres;
-    }
 }

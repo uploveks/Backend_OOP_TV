@@ -7,19 +7,19 @@ import page.CurrentPage;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class Error {
+public final class ErrorOutput {
 
-    private static Error instance;
+    private static ErrorOutput instance;
 
-    private Error() {
+    private ErrorOutput() {
     }
 
     /**
      * @return
      */
-    public static Error getInstance() {
+    public static ErrorOutput getInstance() {
         if (instance == null) {
-            instance = new Error();
+            instance = new ErrorOutput();
         }
 
         return instance;

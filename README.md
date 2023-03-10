@@ -1,8 +1,7 @@
-Belibova Daniela 323CD 
 
 <span style="color:red;">
 
-#  Project POO TV - Part II
+#  Project OOP TV - Part II
 </span>
 
 <div align="center"><img src="https://i.imgur.com/S1ROjQr.gif" width="300px"></div>
